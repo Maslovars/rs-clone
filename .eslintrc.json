@@ -4,8 +4,9 @@
         "es2021": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "airbnb"
+        "plugin:prettier/recommended",
+        "airbnb",
+        "prettier/prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -35,7 +36,12 @@
                 "ts": "never",
                 "tsx": "never"
             }
-        ]
+        ],
+        "indent": [
+            "warn",
+            2
+        ],
+        "react/jsx-indent": "warn"
     },
     "settings": {
         "import/resolver": {
