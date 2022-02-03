@@ -39,7 +39,8 @@
         ],
         "indent": [
             "error",
-            4
+            4,
+            {"SwitchCase": 1}
         ],
         "react/jsx-indent": [
             "error",
@@ -52,7 +53,9 @@
         "linebreak-style": [
             "error",
             "unix"
-        ]
+        ],
+      "no-param-reassign": 0,
+      "max-len": ["error", { "code": 120 }]
     },
     "settings": {
         "import/resolver": {
