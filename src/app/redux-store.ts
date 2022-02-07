@@ -1,8 +1,8 @@
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import thunk from "redux-thunk";
-import { coinReducer } from "../reducers/coin";
-import { itemReducer } from "../reducers/item";
-import { popupReducer } from "../reducers/popup";
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { coinReducer } from '../reducers/coin';
+import { itemReducer } from '../reducers/item';
+import { popupReducer } from '../reducers/popup';
 
 export const rootReducer = combineReducers({
     coin: coinReducer,
@@ -15,9 +15,9 @@ export type AppStateType = ReturnType<typeof rootReducer>;
 export type GetAppStateType = () => AppStateType;
 
 // type AppActionsType =
-   // | ActionsCoinType
-   // | ActionsItemType
-   // | ActionsPopupType;
+// | ActionsCoinType
+// | ActionsItemType
+// | ActionsPopupType;
 
 // export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionsType>;
 
@@ -28,7 +28,10 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+export const store = createStore(
+    rootReducer,
+    composeEnhancers(applyMiddleware(thunk)),
+);
 
-//@ts-ignore
+// @ts-ignore
 window.store = store;

@@ -1,4 +1,8 @@
-import {RUNE_BUY, RUNE_TYPE_GOLD_INCOME, RunesListType} from '../constants/runes';
+import {
+    RUNE_BUY,
+    RUNE_TYPE_GOLD_INCOME,
+    RunesListType,
+} from '../constants/runes';
 import { COIN_RECEIVED, COIN_SPENT } from '../constants';
 
 export type InitialCoinType = {
@@ -19,6 +23,7 @@ export const coinSpent = (coins: number) => {
         payload: { coins },
     } as const;
 };
+
 export const coinBuy = (multiplier: number, rune: RunesListType) => {
     return {
         type: RUNE_BUY,
@@ -38,7 +43,7 @@ const initialStateCoin: InitialCoinType = {
 
 export const coinReducer = (
     state: InitialCoinType = initialStateCoin,
-    action: ActionsCoinType
+    action: ActionsCoinType,
 ): InitialCoinType => {
     switch (action.type) {
         case COIN_RECEIVED:

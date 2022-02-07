@@ -54,6 +54,7 @@
             "error",
             "unix"
         ],
+      "jsx-a11y/click-events-have-key-events": 0,
       "no-param-reassign": 0,
       "max-len": ["error", { "code": 120 }]
     },
