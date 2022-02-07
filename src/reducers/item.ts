@@ -1,5 +1,6 @@
 import { ITEM_LEVEL_MAP, ItemType, ProduceLevelType } from '../constants/items';
-import { RUNE_BUY, RUNE_TYPE_ITEM_PRODUCE_LEVEL, RunesListType } from "../constants/runes";
+import { RUNE_BUY, RUNE_TYPE_ITEM_PRODUCE_LEVEL, RunesListType } from '../constants/runes';
+import { ITEM_MERGE, ITEM_PRODUCE } from '../constants';
 
 export type InitialItemType = {
     items: (ItemType | null)[];
@@ -9,7 +10,7 @@ export type InitialItemType = {
 
 export const itemProduce = (items: (ItemType | null)[], dps: number) => {
     return {
-        type: 'ITEM/ITEM_PRODUCE',
+        type: ITEM_PRODUCE,
         payload: { items, dps },
     } as const;
 };
@@ -21,7 +22,7 @@ export const itemMerge = (
     toIndex: number,
 ) => {
     return {
-        type: 'ITEM/ITEM_MERGE',
+        type: ITEM_MERGE,
         payload: {
             items,
             dps,
@@ -33,7 +34,7 @@ export const itemMerge = (
 
 export const itemBuy = (rune: RunesListType, produceLevel: ItemType) => {
     return {
-        type: 'RUNE_BUY',
+        type: RUNE_BUY,
         payload: { rune, produceLevel },
     } as const;
 };
@@ -70,7 +71,7 @@ export const itemReducer = (
     action: ActionsItemType
 ): InitialItemType => {
     switch (action.type) {
-        case 'ITEM/ITEM_PRODUCE': {
+        case ITEM_PRODUCE: {
             const firstEmptyIndex = state.items.indexOf(null);
 
             if (firstEmptyIndex < 0) {
@@ -88,7 +89,7 @@ export const itemReducer = (
                 dps: calculateDPS(clone),
             };
         }
-        case 'ITEM/ITEM_MERGE': {
+        case ITEM_MERGE: {
             const future = [...state.items];
             const item = future[action.payload.fromIndex];
             const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(Number) as ProduceLevelType[];

@@ -2,10 +2,12 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { coinReducer } from "../reducers/coin";
 import { itemReducer } from "../reducers/item";
+import { popupReducer } from "../reducers/popup";
 
 export const rootReducer = combineReducers({
     coin: coinReducer,
     item: itemReducer,
+    popup: popupReducer,
 });
 
 export type AppStateType = ReturnType<typeof rootReducer>;
@@ -14,7 +16,8 @@ export type GetAppStateType = () => AppStateType;
 
 // type AppActionsType =
    // | ActionsCoinType
-   // | ActionsItemType;
+   // | ActionsItemType
+   // | ActionsPopupType;
 
 // export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionsType>;
 
