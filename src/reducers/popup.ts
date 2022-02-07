@@ -28,7 +28,7 @@ const initialStatePopup: InitialPopupType = {
 
 export const popupReducer = (
     state: InitialPopupType = initialStatePopup,
-    action: ActionsPopupType
+    action: ActionsPopupType,
 ): InitialPopupType => {
     switch (action.type) {
         case POPUP_OPEN: {
@@ -42,10 +42,10 @@ export const popupReducer = (
             return {
                 ...state,
                 open: false,
-            }
+            };
         }
 
     default:
         return state;
     }
-}
+};

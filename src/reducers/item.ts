@@ -1,5 +1,9 @@
 import { ITEM_LEVEL_MAP, ItemType, ProduceLevelType } from '../constants/items';
-import { RUNE_BUY, RUNE_TYPE_ITEM_PRODUCE_LEVEL, RunesListType } from '../constants/runes';
+import {
+    RUNE_BUY,
+    RUNE_TYPE_ITEM_PRODUCE_LEVEL,
+    RunesListType,
+} from '../constants/runes';
 import { ITEM_MERGE, ITEM_PRODUCE } from '../constants';
 
 export type InitialItemType = {
@@ -68,7 +72,7 @@ const initialStateItem: InitialItemType = {
 
 export const itemReducer = (
     state: InitialItemType = initialStateItem,
-    action: ActionsItemType
+    action: ActionsItemType,
 ): InitialItemType => {
     switch (action.type) {
         case ITEM_PRODUCE: {
@@ -92,7 +96,9 @@ export const itemReducer = (
         case ITEM_MERGE: {
             const future = [...state.items];
             const item = future[action.payload.fromIndex];
-            const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(Number) as ProduceLevelType[];
+            const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(
+                Number,
+            ) as ProduceLevelType[];
 
             if (item !== null) {
                 const indexOfPreviousItem = itemIndexes.indexOf(
@@ -113,20 +119,22 @@ export const itemReducer = (
         */
 
         case RUNE_BUY:
-            const { rune } = action.payload
+            const { rune } = action.payload;
             if (action.payload.rune.type === RUNE_TYPE_ITEM_PRODUCE_LEVEL) {
-                const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(Number) as ProduceLevelType[];
+                const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(
+                    Number,
+                ) as ProduceLevelType[];
 
                 return {
                     ...state,
-                    produceLevel: itemIndexes[rune.owned + 1]
-                }
+                    produceLevel: itemIndexes[rune.owned + 1],
+                };
             }
             return {
                 ...state,
-            }
+            };
 
     default:
-        return state
+        return state;
     }
-}
+};
