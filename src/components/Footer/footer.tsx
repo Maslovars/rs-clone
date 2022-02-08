@@ -1,11 +1,11 @@
 import React from 'react';
 
 type FooterPropsType = {
-    onUpgradeClick: () => {};
-    onShopClick: () => {};
-    onSettingsClick: () => {};
-    onAboutClick: () => {};
-    // onFaqClick: () => {};
+    onUpgradeClick: () => void;
+    onShopClick: () => void;
+    onSettingsClick: () => void;
+    onAboutClick: () => void;
+    // onFaqClick: () => void;
 };
 
 const Footer = React.memo((props: FooterPropsType) => {
