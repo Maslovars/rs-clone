@@ -1,3 +1,5 @@
+export const COIN_RECEIVE_SHOW_DURATION = 500;
+
 export type ProduceLevelType =
     | 1
     | 2
