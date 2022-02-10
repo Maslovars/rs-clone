@@ -9,7 +9,7 @@ type ItemBoardPropsType = {
     start: boolean;
     items: (ItemType | null)[];
     clickedIndex: number | null;
-    onClick: () => void;
+    onClick: (item: ItemType | null, index: number) => void;
     onReceiveCoin: (coins: number) => void;
 };
 
