@@ -8,14 +8,14 @@ export const openPopup = (open: boolean | null) => {
     return {
         type: POPUP_OPEN,
         payload: { open },
-    } as const;
+    };
 };
 
 export const closePopup = (open: boolean | null = false) => {
     return {
         type: POPUP_CLOSE,
         payload: { open },
-    } as const;
+    };
 };
 
 export type ActionsPopupType =

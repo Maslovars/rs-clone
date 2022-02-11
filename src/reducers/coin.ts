@@ -24,10 +24,10 @@ export const coinSpent = (coins: number) => {
     } as const;
 };
 
-export const coinBuy = (multiplier: number, rune: RunesListType) => {
+export const coinBuy = ( rune: RunesListType) => {
     return {
         type: RUNE_BUY,
-        payload: { multiplier, rune },
+        payload: { rune },
     } as const;
 };
 

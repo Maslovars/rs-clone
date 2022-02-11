@@ -3,11 +3,17 @@ import thunk from 'redux-thunk';
 import { coinReducer } from '../reducers/coin';
 import { itemReducer } from '../reducers/item';
 import { popupReducer } from '../reducers/popup';
+import { monsterReducer } from '../reducers/monster';
+import { sheetReducer } from '../reducers/sheet';
+import { runeReducer } from '../reducers/rune';
 
 export const rootReducer = combineReducers({
     coin: coinReducer,
     item: itemReducer,
     popup: popupReducer,
+    monster: monsterReducer,
+    sheet: sheetReducer,
+    rune: runeReducer,
 });
 
 export type AppStateType = ReturnType<typeof rootReducer>;
@@ -17,6 +23,8 @@ export type GetAppStateType = () => AppStateType;
 // type AppActionsType =
 // | ActionsCoinType
 // | ActionsItemType
+// | ActionsMonsterType
+// | ActionsSheetType
 // | ActionsPopupType;
 
 // export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionsType>;
