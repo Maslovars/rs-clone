@@ -12,41 +12,30 @@ export type InitialItemType = {
     produceLevel: ProduceLevelType;
 };
 
-export const itemProduce = (items: (ItemType | null)[], dps: number) => {
+export const itemProduce = () => {
     return {
-        type: ITEM_PRODUCE,
-        payload: { items, dps },
+        type: ITEM_PRODUCE
     } as const;
 };
 
-export const itemMerge = (
-    items: ItemType[],
-    dps: number,
-    fromIndex: number,
-    toIndex: number,
-) => {
+export const itemMerge = (fromIndex: number, toIndex: number) => {
     return {
         type: ITEM_MERGE,
-        payload: {
-            items,
-            dps,
-            fromIndex,
-            toIndex,
-        },
+        payload: { fromIndex, toIndex },
     } as const;
 };
 
-export const itemBuy = (rune: RunesListType, produceLevel: ItemType) => {
+export const runeBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
-        payload: { rune, produceLevel },
+        payload: { rune },
     } as const;
 };
 
 export type ActionsItemType =
     | ReturnType<typeof itemProduce>
     | ReturnType<typeof itemMerge>
-    | ReturnType<typeof itemBuy>;
+    | ReturnType<typeof runeBuy>;
 
 const initialItems = [...new Array(15)].map((k, i) => {
     if (i < 2) {
