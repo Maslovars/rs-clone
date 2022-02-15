@@ -4,7 +4,7 @@
   top: 0;
   height: calc(331px / 3.5);
   width: calc(1536px / 3.5);
-  // background-image: url("../../assets/");
+  background-image: url("../../assets/ui/match/up.png");
   padding: 32px 16px 16px;
   flex-direction: row;
   border-bottom-left-radius: 35%;
@@ -23,7 +23,7 @@
     justify-content: center;
     width: 130px;
     height: 27px;
-    // background-image: url("../../assets/");
+    background-image: url("../../assets/ui/match/table_2.png");
     background-size: cover;
 
     &:before {
@@ -34,7 +34,7 @@
       content: "";
       height: 96px;
       width: 96px;
-      // background-image: url("../../assets/");
+      background-image: url("../../assets/ui/match/coin.png");
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -52,7 +52,7 @@
     justify-content: center;
     width: 130px;
     height: 27px;
-    // background-image: url("../../assets/");
+    background-image: url("../../assets/ui/match/table_2.png");
     background-size: cover;
     margin-left: 8px;
 
@@ -64,7 +64,7 @@
       content: "";
       height: 90px;
       width: 90px;
-      // background-image: url("../../assets/");
+      background-image: url("../../assets/weapons/dagger.png");
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -82,7 +82,7 @@
     flex-direction: column;
     width: 100px;
     height: 97px;
-    // background-image: url("../../assets/");
+    background-image: url("../../assets/ui/match/moves.png");
     background-size: cover;
     margin-top: 50px;
 
