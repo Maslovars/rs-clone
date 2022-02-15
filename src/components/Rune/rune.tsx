@@ -32,18 +32,22 @@ function Rune(props: RunePropsType) {
                 <h1>{rune.name}</h1>
                 <h3>{rune.description}</h3>
                 <h3>
-                    Per level: {per}
+                    Per level:
+                    {per}
                 </h3>
                 <h3>
-                    Current: {current}
+                    Current:
+                    {current}
                 </h3>
                 <h3>
-                    Price: {rune.price}
+                    Price:
+                    {rune.price}
                 </h3>
                 <p>
-                    Owned: {rune.owned}
+                    Owned:
+                    {rune.owned}
                 </p>
-                <div className="buy-button" onClick={onClick}>
+                <div className="buy-button" onClick={onClick} role="button" aria-label="button" tabIndex={0}>
                     <h2>Buy</h2>
                 </div>
             </div>

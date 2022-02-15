@@ -66,4 +66,3 @@ const Footer = React.memo((props: FooterPropsType) => {
 });
 
 export default Footer;
-
