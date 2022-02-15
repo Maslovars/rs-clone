@@ -6,6 +6,8 @@ import { popupReducer } from '../reducers/popup';
 import { monsterReducer } from '../reducers/monster';
 import { sheetReducer } from '../reducers/sheet';
 import { runeReducer } from '../reducers/rune';
+import { appReducer } from '../reducers/app';
+import { authReducer } from '../reducers/auth';
 
 export const rootReducer = combineReducers({
     coin: coinReducer,
@@ -14,6 +16,8 @@ export const rootReducer = combineReducers({
     monster: monsterReducer,
     sheet: sheetReducer,
     rune: runeReducer,
+    app: appReducer,
+    auth: authReducer,
 });
 
 export type AppStateType = ReturnType<typeof rootReducer>;
@@ -25,6 +29,8 @@ export type GetAppStateType = () => AppStateType;
 // | ActionsItemType
 // | ActionsMonsterType
 // | ActionsSheetType
+// | ActionsAppType
+// | ActionsAuthType
 // | ActionsPopupType;
 
 // export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionsType>;

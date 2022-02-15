@@ -8,7 +8,7 @@ type RuneScreenPropsType = {
     onRuneBuy: (rune: RunesListType) => void;
 };
 
-const runeScreen = (props: RuneScreenPropsType) => {
+const RuneScreen = (props: RuneScreenPropsType) => {
     const runes = useSelector<AppStateType, RunesListType[]>(
         (state) => state.rune.runes,
     );
@@ -33,4 +33,4 @@ const runeScreen = (props: RuneScreenPropsType) => {
     });
 };
 
-export default runeScreen;
+export default RuneScreen;
