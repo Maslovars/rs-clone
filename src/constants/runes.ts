@@ -1,3 +1,8 @@
+import active_4 from "../assets/runes/active_4.png";
+import passive_5 from "../assets/runes/passive_5.png";
+import sword_1 from "../assets/runes/sword_1.png";
+import sword_2 from "../assets/runes/sword_2.png";
+
 export const RUNE_TYPE_GOLD_INCOME = 'RUNE_TYPE_GOLD_INCOME';
 export const RUNE_TYPE_ITEM_PRODUCE_LEVEL = 'RUNE_TYPE_ITEM_PRODUCE_LEVEL';
 export const RUNE_TYPE_DAMAGE_CRIT_RATE = 'RUNE_TYPE_DAMAGE_CRIT_RATE';
@@ -11,7 +16,7 @@ export type RunesListType = {
         | 'RUNE_TYPE_ITEM_PRODUCE_LEVEL'
         | 'RUNE_TYPE_DAMAGE_CRIT_RATE'
         | 'RUNE_TYPE_DAMAGE_CRIT_MULTI';
-    // icon: ;
+    icon: string;
     owned: number;
     price: number;
     description: string;
@@ -25,7 +30,7 @@ export const RUNES_LIST: RunesListType[] = [
     {
         name: 'Coin Income',
         type: RUNE_TYPE_GOLD_INCOME,
-        // icon: ,
+        icon: active_4,
         owned: 0,
         price: 15,
         description: 'Increases coin income',
@@ -37,7 +42,7 @@ export const RUNES_LIST: RunesListType[] = [
     {
         name: 'Item Level',
         type: RUNE_TYPE_ITEM_PRODUCE_LEVEL,
-        // icon: ,
+        icon: passive_5,
         owned: 0,
         price: 500,
         description: 'Increases level of weapons',
@@ -49,7 +54,7 @@ export const RUNES_LIST: RunesListType[] = [
     {
         name: 'Crit Rate',
         type: RUNE_TYPE_DAMAGE_CRIT_RATE,
-        // icon: ,
+        icon: sword_1,
         owned: 0,
         price: 1000,
         description: 'Increases crit rate',
@@ -61,7 +66,7 @@ export const RUNES_LIST: RunesListType[] = [
     {
         name: 'Crit Multiplier',
         type: RUNE_TYPE_DAMAGE_CRIT_MULTI,
-        // icon: ,
+        icon: sword_2,
         owned: 0,
         price: 150,
         description: 'Increases crit damage',
