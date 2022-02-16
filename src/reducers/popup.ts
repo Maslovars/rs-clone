@@ -1,21 +1,20 @@
 import { POPUP_CLOSE, POPUP_OPEN } from '../constants';
 
 export type InitialPopupType = {
-    open: boolean | null;
+    open: string | null;
 };
 
-export const openPopup = (open: boolean | null) => {
+export const openPopup = (open: string | null) => {
     return {
         type: POPUP_OPEN,
         payload: { open },
-    };
+    } as const;
 };
 
-export const closePopup = (open: boolean | null = false) => {
+export const closePopup = () => {
     return {
         type: POPUP_CLOSE,
-        payload: { open },
-    };
+    } as const;
 };
 
 export type ActionsPopupType =
@@ -41,7 +40,7 @@ export const popupReducer = (
         case POPUP_CLOSE: {
             return {
                 ...state,
-                open: false,
+                open: null,
             };
         }
 

@@ -11,7 +11,7 @@ type ItemBoardScreenPropsType = {
     onReceiveCoin: (coins: number) => void;
 };
 
-const itemBoardScreen = (props: ItemBoardScreenPropsType) => {
+const ItemBoardScreen = (props: ItemBoardScreenPropsType) => {
     const items = useSelector<AppStateType, (ItemType | null)[]>(
         (state) => state.item.items);
 
@@ -82,4 +82,4 @@ const itemBoardScreen = (props: ItemBoardScreenPropsType) => {
     );
 };
 
-export default itemBoardScreen;
+export default ItemBoardScreen;

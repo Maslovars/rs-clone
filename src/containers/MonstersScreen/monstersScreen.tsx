@@ -15,7 +15,7 @@ type MonstersScreenPropsType = {
     level: number;
 };
 
-const monstersScreen = (props: MonstersScreenPropsType) => {
+const MonstersScreen = (props: MonstersScreenPropsType) => {
     const dps = useSelector<AppStateType, number>((state) => state.item.dps);
     const monster = useSelector<
         AppStateType,
@@ -82,4 +82,4 @@ const monstersScreen = (props: MonstersScreenPropsType) => {
     );
 };
 
-export default monstersScreen;
+export default MonstersScreen;
