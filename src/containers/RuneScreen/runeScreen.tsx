@@ -15,22 +15,25 @@ const RuneScreen = (props: RuneScreenPropsType) => {
     const coin = useSelector<AppStateType, number>((state) => state.coin.coins);
 
     const { onRuneBuy } = props;
-    return runes.map((rune) => {
-        const canBuy = coin >= rune.price;
-
-        return (
-            <Rune
-                key={rune.name}
-                rune={rune}
-                canBuy={canBuy}
-                onClick={() => {
-                    if (canBuy) {
-                        onRuneBuy(rune);
-                    }
-                }}
-            />
-        );
-    });
+    return <>
+        {
+        runes.map((rune) => {
+            const canBuy = coin >= rune.price;
+            return (
+                <Rune
+                    key={rune.name}
+                    rune={rune}
+                    canBuy={canBuy}
+                    onClick={() => {
+                        if (canBuy) {
+                            onRuneBuy(rune);
+                        }
+                    }}
+                />
+            );
+        })
+    }
+    </>
 };
 
 export default RuneScreen;
