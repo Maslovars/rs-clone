@@ -5,7 +5,7 @@ import { InitialAuthType } from '../../reducers/auth';
 import { Canvas, useFrame } from '@react-three/fiber';
 import {
     COIN_RECEIVED,
-    COIN_SPENT, ITEM_MERGE, ITEM_PRODUCE, MONSTER_DIE, MONSTER_UPDATE,
+    COIN_SPENT, ITEM_MERGE, ITEM_PRODUCE, MONSTER_DIE, MONSTER_UPDATE, POPUP_CLOSE,
     POPUP_SCREEN_ABOUT,
     POPUP_SCREEN_FAQ, POPUP_SCREEN_SETTINGS, POPUP_SCREEN_SHOP,
     POPUP_SCREEN_UPGRADE
@@ -22,6 +22,7 @@ import MonstersScreen from '../MonstersScreen/monstersScreen';
 import FooterGame from '../FooterGame/footerGame';
 import Tutorial from '../../components/Tutorial/tutorial';
 import { IonPhaser } from '@ion-phaser/react';
+import Popup from '../../components/Popup/popup';
 
 type GamePropsType = {
 
@@ -264,19 +265,19 @@ const Game = (props: GamePropsType) => {
             />
 
             <div className={ `"screen" ${popup.open ? "popupActive" : ""}` }>
-                {/*<IonPhaser game={stateGame.phaserGame} state={stateGame} />*/}
+                <IonPhaser game={stateGame.phaserGame} /*state={stateGame}*/ />
                 {renderContent()}
             </div>
 
-            {/*{popup.open && (
+            {popup.open && (
                 <Popup
                     type={popup.open}
-                    content={this.getPopupContent()}
-                    onClose={e => {
-                        this.props.dispatch({ type: POPUP_CLOSE })
+                    content={getPopupContent()}
+                    onClose={() => {
+                        dispatch({ type: POPUP_CLOSE })
                     }}
                 />
-            )}*/}
+            )}
 
         </div>
     )
