@@ -2,7 +2,7 @@ import React from 'react';
 
 type PopupPropsType = {
     type: string,
-    content: Node, // посмотреть тип
+    content: JSX.Element | null,
     onClose: () => void,
 };
 
