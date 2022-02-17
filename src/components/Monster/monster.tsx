@@ -2,12 +2,12 @@ import React from 'react';
 
 type MonsterPropsType = {
     name: string;
-    top: number;
-    right: number;
-    health: number;
-    currentHealth: number;
-    receivedDamage: number | undefined;
-    isCriticalHit: boolean;
+    top?: number;
+    right?: number;
+    health?: number;
+    currentHealth?: number;
+    receivedDamage?: number | undefined;
+    isCriticalHit?: boolean;
 };
 
 function Monster(props: MonsterPropsType) {
@@ -31,7 +31,10 @@ function Monster(props: MonsterPropsType) {
                 )}
                 <div
                     className="healthbar-inner"
-                    style={{ width: `${(currentHealth * 100) / health}%` }}
+                    style={{ width: `${
+                            (currentHealth !== undefined && health !== undefined) && (currentHealth * 100) / health
+                        }                        
+                    }%` }}
                 />
             </div>
         </div>
