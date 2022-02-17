@@ -1,9 +1,9 @@
 import React from 'react';
 
 type CounterPropsType = {
-    coins: number;
-    dps: number;
-    level: number;
+    coins?: number;
+    dps?: number;
+    level?: number;
 };
 
 const Counter = React.memo((props: CounterPropsType) => {

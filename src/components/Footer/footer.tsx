@@ -1,10 +1,10 @@
 import React from 'react';
 
 type FooterPropsType = {
-    onUpgradeClick: () => void;
-    onShopClick: () => void;
-    onSettingsClick: () => void;
-    onAboutClick: () => void;
+    onUpgradeClick?: () => void;
+    onShopClick?: () => void;
+    onSettingsClick?: () => void;
+    onAboutClick?: () => void;
     // onFaqClick: () => void;
 };
 
