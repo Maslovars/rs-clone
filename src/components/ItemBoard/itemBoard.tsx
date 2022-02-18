@@ -55,7 +55,6 @@ function ItemBoard(props: ItemBoardPropsType) {
         <div className="com-ItemBoard">
             {items.map((item, i) => (
                 <Item
-                    key={i}
                     i={i}
                     item={item}
                     highlight={highlight}

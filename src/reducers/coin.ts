@@ -24,7 +24,7 @@ export const coinSpent = (coins: number) => {
     } as const;
 };
 
-export const coinBuy = ( rune: RunesListType) => {
+export const coinBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
         payload: { rune },
@@ -42,6 +42,7 @@ const initialStateCoin: InitialCoinType = {
 };
 
 export const coinReducer = (
+    // eslint-disable-next-line default-param-last
     state: InitialCoinType = initialStateCoin,
     action: ActionsCoinType,
 ): InitialCoinType => {

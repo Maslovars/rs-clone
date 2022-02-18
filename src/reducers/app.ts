@@ -3,7 +3,7 @@ import {
     AUTH_LOGOUT_SUCCESS,
     CHANGE_LANGUAGE,
     LANGUAGE_DEFAULT,
-    LANGUAGE_EN
+    LANGUAGE_EN,
 } from '../constants';
 
 export type InitialAppType = {
@@ -41,6 +41,7 @@ const initialStateApp: InitialAppType = {
 };
 
 export const appReducer = (
+    // eslint-disable-next-line default-param-last
     state: InitialAppType = initialStateApp,
     action: ActionsAppType,
 ): InitialAppType => {
@@ -60,7 +61,7 @@ export const appReducer = (
         case AUTH_LOGOUT_SUCCESS:
             return {
                 ...initialStateApp,
-            }
+            };
 
         default:
             return state;

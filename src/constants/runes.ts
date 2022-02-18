@@ -1,7 +1,7 @@
-import active_4 from "../assets/runes/active_4.png";
-import passive_5 from "../assets/runes/passive_5.png";
-import sword_1 from "../assets/runes/sword_1.png";
-import sword_2 from "../assets/runes/sword_2.png";
+import active_4 from '../assets/runes/active_4.png';
+import passive_5 from '../assets/runes/passive_5.png';
+import sword_1 from '../assets/runes/sword_1.png';
+import sword_2 from '../assets/runes/sword_2.png';
 
 export const RUNE_TYPE_GOLD_INCOME = 'RUNE_TYPE_GOLD_INCOME';
 export const RUNE_TYPE_ITEM_PRODUCE_LEVEL = 'RUNE_TYPE_ITEM_PRODUCE_LEVEL';

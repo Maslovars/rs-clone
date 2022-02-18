@@ -22,7 +22,7 @@ export const rootReducer = combineReducers({
 
 export type AppStateType = ReturnType<typeof rootReducer>;
 
-export type GetAppStateType = () => AppStateType;
+// export type GetAppStateType = () => AppStateType;
 
 // type AppActionsType =
 // | ActionsCoinType

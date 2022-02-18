@@ -1,14 +1,14 @@
-import armor from "../assets/weapons/armor.png";
-import helmet from "../assets/weapons/helmet.png";
-import sword from "../assets/weapons/sword.png";
-import swordWood from "../assets/weapons/swordWood.png";
-import upg_axe from "../assets/weapons/upg_axe.png";
-import upg_axeDouble from "../assets/weapons/upg_axeDouble.png";
-import upg_bow from "../assets/weapons/upg_bow.png";
-import upg_helmet from "../assets/weapons/upg_helmet.png";
-import upg_spear from "../assets/weapons/upg_spear.png";
-import upgShieldSmall from "../assets/weapons/upgShieldSmall.png";
-import wand from "../assets/weapons/wand.png";
+import armor from '../assets/weapons/armor.png';
+import helmet from '../assets/weapons/helmet.png';
+import sword from '../assets/weapons/sword.png';
+import swordWood from '../assets/weapons/swordWood.png';
+import upg_axe from '../assets/weapons/upg_axe.png';
+import upg_axeDouble from '../assets/weapons/upg_axeDouble.png';
+import upg_bow from '../assets/weapons/upg_bow.png';
+import upg_helmet from '../assets/weapons/upg_helmet.png';
+import upg_spear from '../assets/weapons/upg_spear.png';
+import upgShieldSmall from '../assets/weapons/upgShieldSmall.png';
+import wand from '../assets/weapons/wand.png';
 
 export const COIN_RECEIVE_SHOW_DURATION = 500;
 

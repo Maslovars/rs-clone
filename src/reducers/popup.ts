@@ -26,6 +26,7 @@ const initialStatePopup: InitialPopupType = {
 };
 
 export const popupReducer = (
+    // eslint-disable-next-line default-param-last
     state: InitialPopupType = initialStatePopup,
     action: ActionsPopupType,
 ): InitialPopupType => {
@@ -34,7 +35,7 @@ export const popupReducer = (
             return {
                 ...state,
                 open: action.payload.open,
-            }
+            };
         }
 
         case POPUP_CLOSE: {
@@ -44,7 +45,7 @@ export const popupReducer = (
             };
         }
 
-    default:
-        return state;
+        default:
+            return state;
     }
 };
