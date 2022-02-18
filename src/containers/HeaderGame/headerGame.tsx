@@ -9,9 +9,9 @@ type HeaderPropsType = {
 
 const HeaderGame = React.memo((props: HeaderPropsType) => {
     const coins = useSelector<AppStateType, number>(
-        state => state.coin.coins,
+        (state) => state.coin.coins,
     );
-    const dps = useSelector<AppStateType, number>(state => state.item.dps);
+    const dps = useSelector<AppStateType, number>((state) => state.item.dps);
     const { level } = props;
 
     return <Counter level={level} dps={dps} coins={coins} />;

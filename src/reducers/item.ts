@@ -14,7 +14,7 @@ export type InitialItemType = {
 
 export const itemProduce = () => {
     return {
-        type: ITEM_PRODUCE
+        type: ITEM_PRODUCE,
     } as const;
 };
 
@@ -60,6 +60,7 @@ const initialStateItem: InitialItemType = {
 };
 
 export const itemReducer = (
+    // eslint-disable-next-line default-param-last
     state: InitialItemType = initialStateItem,
     action: ActionsItemType,
 ): InitialItemType => {
@@ -93,7 +94,8 @@ export const itemReducer = (
                 const indexOfPreviousItem = itemIndexes.indexOf(
                     item.damage,
                 ) as ProduceLevelType;
-                future[action.payload.toIndex] = ITEM_LEVEL_MAP[itemIndexes[indexOfPreviousItem + 1]];
+                future[action.payload.toIndex] =
+                    ITEM_LEVEL_MAP[itemIndexes[indexOfPreviousItem + 1]];
                 future[action.payload.fromIndex] = null;
             }
             return {
@@ -108,7 +110,6 @@ export const itemReducer = (
         */
 
         case RUNE_BUY:
-            const { rune } = action.payload;
             if (action.payload.rune.type === RUNE_TYPE_ITEM_PRODUCE_LEVEL) {
                 const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(
                     Number,
@@ -116,14 +117,14 @@ export const itemReducer = (
 
                 return {
                     ...state,
-                    produceLevel: itemIndexes[rune.owned + 1],
+                    produceLevel: itemIndexes[action.payload.rune.owned + 1],
                 };
             }
             return {
                 ...state,
             };
 
-    default:
-        return state;
+        default:
+            return state;
     }
 };

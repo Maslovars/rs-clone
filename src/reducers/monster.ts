@@ -3,11 +3,11 @@ import {
     MONSTER_UPDATE,
     MONSTERS_MAP,
     objMonsterType,
-    STARTING_LEVEL
+    STARTING_LEVEL,
 } from '../constants';
 
 export type InitialMonsterType = {
-    monster: { [key: number]: objMonsterType }
+    monster: { [key: number]: objMonsterType };
 };
 
 export const monsterUpdate = (monster: { [key: number]: objMonsterType }) => {
@@ -17,7 +17,10 @@ export const monsterUpdate = (monster: { [key: number]: objMonsterType }) => {
     } as const;
 };
 
-export const monsterDie = (key: number, monster: { [key: number]: objMonsterType }) => {
+export const monsterDie = (
+    key: number,
+    monster: { [key: number]: objMonsterType },
+) => {
     return {
         type: MONSTER_DIE,
         payload: { key, monster },
@@ -33,23 +36,24 @@ const initialStateMonster: InitialMonsterType = {
 };
 
 export const monsterReducer = (
+    // eslint-disable-next-line default-param-last
     state: InitialMonsterType = initialStateMonster,
     action: ActionsMonsterType,
 ): InitialMonsterType => {
     switch (action.type) {
-    case MONSTER_UPDATE:
-        return {
-            ...state,
-            monster: action.payload.monster,
-        };
+        case MONSTER_UPDATE:
+            return {
+                ...state,
+                monster: action.payload.monster,
+            };
 
-    case MONSTER_DIE:
-        return {
-            ...state,
-            monster: MONSTERS_MAP[action.payload.key],
-        };
+        case MONSTER_DIE:
+            return {
+                ...state,
+                monster: MONSTERS_MAP[action.payload.key],
+            };
 
-    default:
-        return state;
+        default:
+            return state;
     }
 };

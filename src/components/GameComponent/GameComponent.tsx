@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './App.scss';
 import Monster from '../Monster/monster';
 import Counter from '../Counter/counter';
 import Footer from '../Footer/footer';
 import Game from '../../containers/Game/game';
+import './gameComponent.scss';
 
 function GameComponent() {
     const [load, setLoad] = useState<boolean>(false);
@@ -11,12 +11,13 @@ function GameComponent() {
     function preload() {
         return new Promise<void>((accept) => {
             setTimeout(() => {
-                return accept()
-            }, 3000)
-        })
+                return accept();
+            }, 3000);
+        });
     }
 
-    useEffect(() => { //проверить правильно или нет
+    // вопросы по юз эффекту
+    useEffect(() => {
         const preloads = async () => {
             await preload();
             setLoad(true);
@@ -49,7 +50,7 @@ function GameComponent() {
                 <Monster name="Wraith_2" />
                 <Monster name="Wraith_3" />
             </div>
-        )
+        );
     }
 
     function preloadInitial() {
@@ -59,7 +60,7 @@ function GameComponent() {
                 <Counter />
                 <Footer />
             </div>
-        )
+        );
     }
     if (!load) {
         return (
@@ -67,16 +68,15 @@ function GameComponent() {
                 <h1 className="loading">Loading game...</h1>
                 {preloadInitial()}
             </div>
-        )
+        );
     }
-
 
     return (
         <div className="app-container">
             <Game />
             {preloadAll()}
         </div>
-    )
+    );
 }
 
 export default GameComponent;

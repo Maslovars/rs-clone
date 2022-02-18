@@ -1,3 +1,5 @@
+@import '../../styles';
+
 $scale: 3.5;
 
 .com-Popup {
@@ -8,7 +10,7 @@ $scale: 3.5;
   transform: translate(-50%, -65%);
   width: 1307px / $scale;
   height: 1457px / $scale;
-  // background-image: url("../../assets/");
+  background-image: url('../../assets/ui/level_select/bg.png'); //не понятно
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -20,14 +22,14 @@ $scale: 3.5;
     display: flex;
     top: -60px;
     position: absolute;
-   // background-image: url("../../assets/");
+    background-image: url('../../assets/ui/level_select/header.png'); //не понятно
     width: calc(1003px / 3.7);
     height: calc(396px / 3.7);
     background-size: cover;
     margin-right: 8px;
 
     &.POPUP_SCREEN_SETTINGS {
-      background-image: url("../../assets/ui/settings/92.png");
+      background-image: url('../../assets/ui/settings/92.png');
     }
   }
 
@@ -37,7 +39,7 @@ $scale: 3.5;
     top: -20px;
     right: 0;
     position: absolute;
-   // background-image: url("../../assets/");
+    background-image: url('../../assets/ui/settings/close_2.png'); //не понятно
     width: 50px;
     height: 49px;
     background-size: cover;
@@ -52,7 +54,7 @@ $scale: 3.5;
     display: flex;
     margin-right: 8px;
     margin-bottom: 8px;
-    background-image: url("../../assets/ui/upgrade/table.png");
+    background-image: url('../../assets/ui/upgrade/table.png');
     width: 1102px / $scale;
     height: 1288px / $scale;
     background-size: cover;

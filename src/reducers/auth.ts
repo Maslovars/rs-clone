@@ -2,7 +2,7 @@ import {
     AUTH_LOGIN_FAIL,
     AUTH_LOGIN_REQUEST,
     AUTH_LOGIN_SUCCESS,
-    AUTH_LOGOUT_SUCCESS
+    AUTH_LOGOUT_SUCCESS,
 } from '../constants';
 
 export type InitialAuthType = {
@@ -18,7 +18,7 @@ export type InitialAuthType = {
 
 export const authLoginRequest = () => {
     return {
-        type: AUTH_LOGIN_REQUEST
+        type: AUTH_LOGIN_REQUEST,
     } as const;
 };
 
@@ -61,6 +61,7 @@ const initialStateAuth: InitialAuthType = {
 };
 
 export const authReducer = (
+    // eslint-disable-next-line default-param-last
     state: InitialAuthType = initialStateAuth,
     action: ActionsAuthType,
 ): InitialAuthType => {
@@ -70,7 +71,7 @@ export const authReducer = (
                 ...state,
                 loggingIn: true,
                 loginFailed: false,
-            }
+            };
         }
 
         case AUTH_LOGIN_SUCCESS: {
@@ -95,11 +96,10 @@ export const authReducer = (
         case AUTH_LOGOUT_SUCCESS: {
             return {
                 ...initialStateAuth,
-        };
-    }
+            };
+        }
 
-
-    default:
-        return state;
+        default:
+            return state;
     }
 };

@@ -15,12 +15,12 @@ type MonstersScreenPropsType = {
     level: number;
 };
 
-const MonstersScreen = (props: MonstersScreenPropsType) => {
+function MonstersScreen(props: MonstersScreenPropsType) {
     const dps = useSelector<AppStateType, number>((state) => state.item.dps);
     const monster = useSelector<
         AppStateType,
         { [key: number]: objMonsterType }
-        >((state) => state.monster.monster);
+    >((state) => state.monster.monster);
     const critRate = useSelector<AppStateType, number>(
         (state) => state.sheet.critRate,
     );
@@ -28,8 +28,7 @@ const MonstersScreen = (props: MonstersScreenPropsType) => {
         (state) => state.sheet.critDamage,
     );
 
-    const { start, onMonsterHit, onMonsterDie, level
-    } = props;
+    const { start, onMonsterHit, onMonsterDie, level } = props;
     let receivedDamage: number | undefined;
 
     const [started, setStarted] = useState<boolean>(false);
@@ -80,6 +79,6 @@ const MonstersScreen = (props: MonstersScreenPropsType) => {
             {...monster[level]}
         />
     );
-};
+}
 
 export default MonstersScreen;
