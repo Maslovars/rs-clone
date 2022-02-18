@@ -1,4 +1,5 @@
 import React from 'react';
+import './tutorial.scss';
 
 type TutorialPropsType = {
     step: number;
@@ -57,8 +58,7 @@ const tutorialContent = (step: number) => {
                     </p>
                     <br />
                     <p>
-                        <span className="yellow-number">Yellow number:</span>
-                        {' '}
+                        <span className="yellow-number">Yellow number:</span>{' '}
                         how much coin it generates
                     </p>
                 </>

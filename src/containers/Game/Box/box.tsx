@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Mesh } from 'three';
 import { useFrame } from '@react-three/fiber';
+import '../game.scss';
 
 type BoxPropsType = {
     position: [x: number, y: number, z: number],

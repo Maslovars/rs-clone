@@ -1,3 +1,4 @@
+@import '../../styles';
 
 @keyframes coinReceive {
   0% { top: 0; opacity: 1 }
@@ -50,7 +51,7 @@
       color: #fff;
       height: 68px;
       width: 68px;
-      background-image: url("../../assets/ui/match/coin.png");
+      background-image: url('../../assets/ui/match/coin.png');
       background-repeat: no-repeat;
       background-size: cover;
       animation-name: coinReceive;
@@ -78,7 +79,7 @@
         flex: 1;
         background: rgba(0, 0, 0, .25);
         color: #e40f0f;
-        font-family: 'SoupOfJustice';
+        font-family: 'SoupOfJustice', serif;
       }
 
       .item-coin {
@@ -88,7 +89,7 @@
         flex: 1;
         background: rgba(0, 0, 0, .25);
         color: #e09710;
-        font-family: 'SoupOfJustice';
+        font-family: 'SoupOfJustice', serif;
         border-left: 1px solid rgba(0, 0, 0, .1);
       }
     }

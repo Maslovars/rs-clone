@@ -13,7 +13,8 @@ type ItemBoardScreenPropsType = {
 
 const ItemBoardScreen = (props: ItemBoardScreenPropsType) => {
     const items = useSelector<AppStateType, (ItemType | null)[]>(
-        (state) => state.item.items);
+        (state) => state.item.items,
+        );
 
     const { onReceiveCoin, start, onMergeItem } = props;
     const [started, setStarted] = useState<boolean>(false);

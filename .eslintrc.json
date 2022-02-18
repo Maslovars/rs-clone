@@ -21,6 +21,14 @@
         "@typescript-eslint"
     ],
     "rules": {
+      "object-curly-newline": ["error", {
+        "ObjectExpression": "always",
+        "ObjectPattern": { "multiline": true },
+        "ImportDeclaration": "never",
+        "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+      }],
+      "no-shadow": "off",
+      "@typescript-eslint/no-shadow": ["off"],
         "react/jsx-filename-extension": [
             "warn",
             {
@@ -56,7 +64,15 @@
         ],
       "jsx-a11y/click-events-have-key-events": 0,
       "no-param-reassign": 0,
-      "max-len": ["error", { "code": 120 }]
+      "max-len": ["error", { "code": 120 }],
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": ["error"],
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ]
     },
     "settings": {
         "import/resolver": {

@@ -1,4 +1,5 @@
 import React from 'react';
+import './monster.scss';
 
 type MonsterPropsType = {
     name: string;

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Mesh } from 'three';
 import { useFrame } from '@react-three/fiber';
+import '../game.scss';
 
 export function Line() {
     const mesh = useRef<Mesh>();

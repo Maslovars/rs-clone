@@ -1,4 +1,5 @@
 import React from 'react';
+import './counter.scss';
 
 type CounterPropsType = {
     coins?: number;
@@ -6,8 +7,14 @@ type CounterPropsType = {
     level?: number;
 };
 
-const Counter = React.memo((props: CounterPropsType) => {
-    const { coins = 0, dps = 0, level = 0 } = props;
+const defaultProps = {
+    coins: 0,
+    dps: 0,
+    level: 0,
+};
+
+function Counter(props: CounterPropsType) {
+    const { coins, dps, level } = props;
 
     return (
         <div className="com-Counter">
@@ -23,6 +30,8 @@ const Counter = React.memo((props: CounterPropsType) => {
             </div>
         </div>
     );
-});
+}
+
+Counter.defaultProps = defaultProps;
 
 export default Counter;

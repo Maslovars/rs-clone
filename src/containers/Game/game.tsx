@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { IonPhaser } from '@ion-phaser/react';
 import { AppStateType } from '../../app/redux-store';
 import {
     COIN_RECEIVED,
@@ -13,33 +14,37 @@ import {
     POPUP_SCREEN_FAQ,
     POPUP_SCREEN_SETTINGS,
     POPUP_SCREEN_SHOP,
-    POPUP_SCREEN_UPGRADE
+    POPUP_SCREEN_UPGRADE,
 } from '../../constants';
 import { RUNE_BUY } from '../../constants/runes';
 import RuneScreen from '../RuneScreen/runeScreen';
 import { InitialPopupType } from '../../reducers/popup';
-import { stateGame } from './stateGame';
 import ItemBoardScreen from '../ItemBoardScreen/ItemBoardScreen';
 import { ITEM_LEVEL_MAP } from '../../constants/items';
 import HeaderGame from '../HeaderGame/headerGame';
 import MonstersScreen from '../MonstersScreen/monstersScreen';
 import FooterGame from '../FooterGame/footerGame';
 import Tutorial from '../../components/Tutorial/tutorial';
-import { IonPhaser } from '@ion-phaser/react';
 import Popup from '../../components/Popup/popup';
+import stateGame from './stateGame';
+import './game.scss';
 
-const Game = () => {
-    const popup = useSelector<AppStateType, InitialPopupType>(state => state.popup);
+function Game() {
+    const popup = useSelector<AppStateType, InitialPopupType>(
+        (state) => state.popup,
+    );
     const dispatch = useDispatch();
     const [bgm, setBgm] = useState<boolean>(true);
-    const [onboardingStep, setOnboardingStep] = useState<number>(stateGame.onboardingStep);
+    const [onboardingStep, setOnboardingStep] = useState<number>(
+        stateGame.onboardingStep,
+    );
     const [level, setLevel] = useState<number>(stateGame.level);
 
     setInterval(() => {
-        localStorage.setItem("game-data", JSON.stringify(stateGame))
-    }, 5000)
+        localStorage.setItem('game-data', JSON.stringify(stateGame));
+    }, 5000);
 
-/*    function getBoxes() {
+    /*    function getBoxes() {
         return (
             <Canvas className="canvas">
                 <ambientLight />
@@ -50,85 +55,96 @@ const Game = () => {
                 {/!*<Line />*!/}
             </Canvas>
         )
-    }*/
+    } */
 
     function getSettings() {
         return (
-            <React.Fragment>
+            <>
                 <h1>Toggle BGM</h1>
                 <button
+                    type="button"
                     onClick={() => {
-                        setBgm(!bgm)
-                    }} className="bgm">
-                    {bgm ? "Pause" : "Play"}
+                        setBgm(!bgm);
+                    }}
+                    className="bgm"
+                >
+                    {bgm ? 'Pause' : 'Play'}
                 </button>
-            </React.Fragment>
-        )
+            </>
+        );
     }
 
     function getPopupContent() {
         switch (popup.open) {
-        case POPUP_SCREEN_UPGRADE:
-            return (
-                <RuneScreen
-                    onRuneBuy={(rune) => {
-                        dispatch({
-                            type: COIN_SPENT,
-                            payload: { coins: rune.price }
-                        })
-                        dispatch({
-                            type: RUNE_BUY,
-                            payload: { rune }
-                        })
-                    }}
-                />
-            )
+            case POPUP_SCREEN_UPGRADE:
+                return (
+                    <RuneScreen
+                        onRuneBuy={(rune) => {
+                            dispatch({
+                                type: COIN_SPENT,
+                                payload: { coins: rune.price },
+                            });
+                            dispatch({
+                                type: RUNE_BUY,
+                                payload: { rune },
+                            });
+                        }}
+                    />
+                );
 
-        case POPUP_SCREEN_FAQ:
-            return (
-                <React.Fragment>
-                    <h1>How to Play</h1>
-                    <br />
-                    <ul>
-                        <li>1. Click and match weapons to get one level higher.</li>
+            case POPUP_SCREEN_FAQ:
+                return (
+                    <>
+                        <h1>How to Play</h1>
                         <br />
-                        <li>2. Every weapon gives you coins and deals damage to monsters.</li>
+                        <ul>
+                            <li>
+                                1. Click and match weapons to get one level
+                                higher.
+                            </li>
+                            <br />
+                            <li>
+                                2. Every weapon gives you coins and deals damage
+                                to monsters.
+                            </li>
+                            <br />
+                            <li>
+                                3. Upgrade your runes to gain even more coins
+                                and damage.
+                            </li>
+                            <br />
+                            <li>
+                                4. That`&apos;`s all. How many levels can you
+                                beat?
+                            </li>
+                        </ul>
+                    </>
+                );
+
+            case POPUP_SCREEN_ABOUT:
+                return <h1>Character Sheet (under construction)</h1>;
+
+            case POPUP_SCREEN_SHOP:
+                return (
+                    <>
+                        <h1>Shop (under construction)</h1>
                         <br />
-                        <li>3. Upgrade your runes to gain even more coins and damage.</li>
-                        <br />
-                        <li>4. That's all. How many levels can you beat?</li>
-                    </ul>
-                </React.Fragment>
-            )
+                        <p>Sorry, there is nothing for sale right now.</p>
+                    </>
+                );
 
-        case POPUP_SCREEN_ABOUT:
-            return (
-                <React.Fragment>
-                    <h1>Character Sheet (under construction)</h1>
-                </React.Fragment>
-            )
+            case POPUP_SCREEN_SETTINGS:
+                return getSettings();
 
-        case POPUP_SCREEN_SHOP:
-            return (
-                <React.Fragment>
-                    <h1>Shop (under construction)</h1>
-                    <br />
-                    <p>Sorry, there is nothing for sale right now.</p>
-                </React.Fragment>
-            )
-
-        case POPUP_SCREEN_SETTINGS:
-            return getSettings()
-
-        default:
-            return null
+            default:
+                return null;
         }
     }
 
     function renderContent() {
-        const onboardingLastStep = 8
-        const start = onboardingStep === onboardingLastStep
-        const header = <HeaderGame key="Header" level={level} />
+        const onboardingLastStep = 8;
+        const start = onboardingStep === onboardingLastStep;
+        const header = <HeaderGame key="Header" level={level} />;
 
         const itemBoard = (
             <ItemBoardScreen
@@ -140,23 +156,25 @@ const Game = () => {
                     }
 
                     if (onboardingStep === 4) {
-                        setOnboardingStep(onboardingStep + 1)
+                        setOnboardingStep(onboardingStep + 1);
                     }
 
                     dispatch({
                         type: ITEM_MERGE,
                         payload: {
                             fromIndex,
-                            toIndex
-                        }
-                    })
+                            toIndex,
+                        },
+                    });
                 }}
-                onReceiveCoin={coins => dispatch({
-                    type: COIN_RECEIVED,
-                    payload: { coins }
-                })}
+                onReceiveCoin={(coins) => {
+                    dispatch({
+                        type: COIN_RECEIVED,
+                        payload: { coins },
+                    });
+                }}
             />
-        )
+        );
 
         const monsters = (
             <MonstersScreen
@@ -164,22 +182,24 @@ const Game = () => {
                 start={start}
                 level={level}
                 onMonsterDie={(level, monster) => {
-                    setLevel(level)
+                    setLevel(level);
                     // stateGame.phaserGame.instance.events.emit("onMonsterDie", level)
-
-                    dispatch({ type: MONSTER_DIE, payload: { level } })
+                    dispatch({ type: MONSTER_DIE, payload: { level } });
 
                     if (monster[level].loot) {
-                        dispatch({ type: ITEM_PRODUCE, payload: { items: [ITEM_LEVEL_MAP[1]] } })
+                        dispatch({
+                            type: ITEM_PRODUCE,
+                            payload: { items: [ITEM_LEVEL_MAP[1]] },
+                        });
                     }
                 }}
-                onMonsterHit={monster => {
-                    dispatch({ type: MONSTER_UPDATE, payload: { monster } })
+                onMonsterHit={(monster) => {
+                    dispatch({ type: MONSTER_UPDATE, payload: { monster } });
                 }}
             />
-        )
+        );
 
-        const footer = <FooterGame key="Footer" />
+        const footer = <FooterGame key="Footer" />;
 
         const tutorial = (
             <Tutorial
@@ -189,46 +209,45 @@ const Game = () => {
                     setOnboardingStep(onboardingStep + 1);
                 }}
             />
-        )
+        );
 
         if (onboardingStep !== onboardingLastStep) {
             if (onboardingStep <= 1) {
-                return [header, tutorial]
+                return [header, tutorial];
             }
 
-            return [header, itemBoard, tutorial]
+            return [header, itemBoard, tutorial];
         }
 
-        return [header, itemBoard, monsters, footer]
+        return [header, itemBoard, monsters, footer];
     }
     return (
         <div className="game-container">
             <audio
                 preload="auto"
-                autoPlay={true}
-                loop={true}
+                autoPlay
+                loop
                 muted={!bgm}
-                src={"../../assets/music/the_path_of_the_goblin_king.mp3"}
+                src="../../assets/music/the_path_of_the_goblin_king.mp3"
             />
-
-            <div className={ `"screen" ${popup.open ? "popupActive" : ""}` }>
-                <IonPhaser game={stateGame.phaserGame} initialize={stateGame.bgm} />
+            <div className={`'screen' ${popup.open ? 'popupActive' : ''}`}>
+                <IonPhaser
+                    game={stateGame.phaserGame}
+                    initialize={stateGame.bgm}
+                />
                 {renderContent()}
             </div>
-
             {popup.open && (
                 <Popup
                     type={popup.open}
                     content={getPopupContent()}
                     onClose={() => {
-                        dispatch({ type: POPUP_CLOSE })
+                        dispatch({ type: POPUP_CLOSE });
                     }}
                 />
             )}
-
         </div>
-    )
-
+    );
 }
 
 export default Game;
