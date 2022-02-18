@@ -1,13 +1,18 @@
 import React from 'react';
 import './App.scss';
-import GameComponent from '../components/GameComponent/GameComponent';
+// import GameComponent from '../components/GameComponent/GameComponent';
+import MainHeader from '../components/MainHeader/MainHeader';
+import MainPage from '../components/MainPage/MainPage';
+import MainFooter from '../components/MainFooter/MainFooter';
 
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                <GameComponent />
-            </header>
+            <div className="app-wrapper">
+                <MainHeader />
+                <MainPage />
+                <MainFooter />
+            </div>
         </div>
     );
 }

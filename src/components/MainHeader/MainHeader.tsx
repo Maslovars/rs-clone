@@ -1,6 +1,8 @@
+import React from 'react';
+
 function MainHeader() {
     return (
-        <div>MainHeader</div>
+        <div className="main-header">MainHeader</div>
     )
 }
 
