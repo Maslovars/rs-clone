@@ -13,21 +13,27 @@ export type InitialCoinType = {
 export const coinReceived = (coins: number) => {
     return {
         type: COIN_RECEIVED,
-        payload: { coins },
+        payload: {
+            coins,
+        },
     } as const;
 };
 
 export const coinSpent = (coins: number) => {
     return {
         type: COIN_SPENT,
-        payload: { coins },
+        payload: {
+            coins,
+        },
     } as const;
 };
 
 export const coinBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
-        payload: { rune },
+        payload: {
+            rune,
+        },
     } as const;
 };
 

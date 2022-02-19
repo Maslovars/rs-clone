@@ -4,8 +4,8 @@ import { useFrame } from '@react-three/fiber';
 import '../game.scss';
 
 type BoxPropsType = {
-    position: [x: number, y: number, z: number],
-    turningSpeed: number,
+    position: [x: number, y: number, z: number];
+    turningSpeed: number;
 };
 
 export function Box(props: BoxPropsType) {
@@ -16,7 +16,7 @@ export function Box(props: BoxPropsType) {
         if (mesh.current) {
             mesh.current.rotation.x += props.turningSpeed;
         }
-    })
+    });
     return (
         <mesh
             {...props}
@@ -24,9 +24,10 @@ export function Box(props: BoxPropsType) {
             scale={active ? 1.5 : 1}
             onClick={() => setActive(!active)}
             onPointerOver={() => setHover(true)}
-            onPointerOut={() => setHover(false)} >
+            onPointerOut={() => setHover(false)}
+        >
             <boxGeometry args={[1, 1, 1]} />
             <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
         </mesh>
-    )
+    );
 }

@@ -10,14 +10,16 @@ import {
     POPUP_SCREEN_UPGRADE,
 } from '../../constants';
 
-const FooterGame = () => {
+function FooterGame() {
     const dispatch = useDispatch();
     return (
         <Footer
             onUpgradeClick={() => {
                 return dispatch({
                     type: POPUP_OPEN,
-                    payload: { open: POPUP_SCREEN_UPGRADE },
+                    payload: {
+                        open: POPUP_SCREEN_UPGRADE,
+                    },
                 });
             }}
             // onFaqClick={() => {
@@ -29,23 +31,29 @@ const FooterGame = () => {
             onAboutClick={() => {
                 return dispatch({
                     type: POPUP_OPEN,
-                    payload: { open: POPUP_SCREEN_ABOUT },
+                    payload: {
+                        open: POPUP_SCREEN_ABOUT,
+                    },
                 });
             }}
             onShopClick={() => {
                 return dispatch({
                     type: POPUP_OPEN,
-                    payload: { open: POPUP_SCREEN_SHOP },
+                    payload: {
+                        open: POPUP_SCREEN_SHOP,
+                    },
                 });
             }}
             onSettingsClick={() => {
                 return dispatch({
                     type: POPUP_OPEN,
-                    payload: { open: POPUP_SCREEN_SETTINGS },
+                    payload: {
+                        open: POPUP_SCREEN_SETTINGS,
+                    },
                 });
             }}
         />
     );
-};
+}
 
 export default FooterGame;

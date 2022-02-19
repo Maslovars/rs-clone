@@ -21,14 +21,19 @@ export const itemProduce = () => {
 export const itemMerge = (fromIndex: number, toIndex: number) => {
     return {
         type: ITEM_MERGE,
-        payload: { fromIndex, toIndex },
+        payload: {
+            fromIndex,
+            toIndex,
+        },
     } as const;
 };
 
 export const runeBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
-        payload: { rune },
+        payload: {
+            rune,
+        },
     } as const;
 };
 
