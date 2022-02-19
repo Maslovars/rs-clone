@@ -82,11 +82,15 @@ function Game() {
                         onRuneBuy={(rune) => {
                             dispatch({
                                 type: COIN_SPENT,
-                                payload: { coins: rune.price },
+                                payload: {
+                                    coins: rune.price,
+                                },
                             });
                             dispatch({
                                 type: RUNE_BUY,
-                                payload: { rune },
+                                payload: {
+                                    rune,
+                                },
                             });
                         }}
                     />
@@ -170,7 +174,9 @@ function Game() {
                 onReceiveCoin={(coins) => {
                     dispatch({
                         type: COIN_RECEIVED,
-                        payload: { coins },
+                        payload: {
+                            coins,
+                        },
                     });
                 }}
             />
@@ -183,18 +189,34 @@ function Game() {
                 level={level}
                 onMonsterDie={(level, monster) => {
                     setLevel(level);
-                    // stateGame.phaserGame.instance.events.emit("onMonsterDie", level)
-                    dispatch({ type: MONSTER_DIE, payload: { level } });
+                    // @ts-ignore
+                    stateGame.phaserGame.instance.events.emit(
+                        'onMonsterDie',
+                        level,
+                    );
+                    dispatch({
+                        type: MONSTER_DIE,
+                        payload: {
+                            level,
+                        },
+                    });
 
                     if (monster[level].loot) {
                         dispatch({
                             type: ITEM_PRODUCE,
-                            payload: { items: [ITEM_LEVEL_MAP[1]] },
+                            payload: {
+                                items: [ITEM_LEVEL_MAP[1]],
+                            },
                         });
                     }
                 }}
                 onMonsterHit={(monster) => {
-                    dispatch({ type: MONSTER_UPDATE, payload: { monster } });
+                    dispatch({
+                        type: MONSTER_UPDATE,
+                        payload: {
+                            monster,
+                        },
+                    });
                 }}
             />
         );
@@ -242,7 +264,9 @@ function Game() {
                     type={popup.open}
                     content={getPopupContent()}
                     onClose={() => {
-                        dispatch({ type: POPUP_CLOSE });
+                        dispatch({
+                            type: POPUP_CLOSE,
+                        });
                     }}
                 />
             )}

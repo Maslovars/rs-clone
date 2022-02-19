@@ -25,21 +25,27 @@ export const authLoginRequest = () => {
 export const authLoginSuccess = (logIn: boolean) => {
     return {
         type: AUTH_LOGIN_SUCCESS,
-        payload: { logIn },
+        payload: {
+            logIn,
+        },
     };
 };
 
 export const authLoginFail = (error: string) => {
     return {
         type: AUTH_LOGIN_FAIL,
-        payload: { error },
+        payload: {
+            error,
+        },
     };
 };
 
 export const authLogoutSuccess = (logIn: boolean) => {
     return {
         type: AUTH_LOGOUT_SUCCESS,
-        payload: { logIn },
+        payload: {
+            logIn,
+        },
     };
 };
 

@@ -10,13 +10,11 @@ type PopupPropsType = {
 function Popup(props: PopupPropsType) {
     const { type, content, onClose } = props;
     return (
-        <div className='com-Popup'>
-            <div className={ `popup-header ${ type ? type : '' }` }/>
-            <div className='popup-close' onClick={ onClose }/>
+        <div className="com-Popup">
+            <div className={`popup-header ${type || ''}`} />
+            <div className="popup-close" onClick={onClose} />
             <div className="popup-table">
-                <div className="popup-table-inner">
-                    {content}
-                </div>
+                <div className="popup-table-inner">{content}</div>
             </div>
         </div>
     );

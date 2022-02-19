@@ -13,21 +13,27 @@ export type InitialAppType = {
 export const changeLanguage = (language: string) => {
     return {
         type: CHANGE_LANGUAGE,
-        payload: { language },
+        payload: {
+            language,
+        },
     } as const;
 };
 
 export const appLoadSuccess = (loadingRequest: string) => {
     return {
         type: APP_LOAD_SUCCESS,
-        payload: { loadingRequest },
+        payload: {
+            loadingRequest,
+        },
     } as const;
 };
 
 export const authLogoutSuccess = (language: string) => {
     return {
         type: AUTH_LOGOUT_SUCCESS,
-        payload: { language },
+        payload: {
+            language,
+        },
     } as const;
 };
 

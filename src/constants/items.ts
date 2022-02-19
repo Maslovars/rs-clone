@@ -46,15 +46,59 @@ export type ItemLevelMapType = {
 };
 
 export const ITEM_LEVEL_MAP: ItemLevelMapType = {
-    1: { damage: 1, icon: swordWood, coins: 1 },
-    2: { damage: 2, icon: sword, coins: 2 },
-    5: { damage: 5, icon: upg_bow, coins: 5 },
-    12: { damage: 12, icon: upg_spear, coins: 10 },
-    26: { damage: 26, icon: upg_axeDouble, coins: 20 },
-    60: { damage: 60, icon: upg_axe, coins: 30 },
-    150: { damage: 150, icon: helmet, coins: 40 },
-    350: { damage: 350, icon: armor, coins: 50 },
-    750: { damage: 750, icon: wand, coins: 60 },
-    2000: { damage: 2000, icon: upgShieldSmall, coins: 70 },
-    5000: { damage: 5000, icon: upg_helmet, coins: 80 },
+    1: {
+        damage: 1,
+        icon: swordWood,
+        coins: 1,
+    },
+    2: {
+        damage: 2,
+        icon: sword,
+        coins: 2,
+    },
+    5: {
+        damage: 5,
+        icon: upg_bow,
+        coins: 5,
+    },
+    12: {
+        damage: 12,
+        icon: upg_spear,
+        coins: 10,
+    },
+    26: {
+        damage: 26,
+        icon: upg_axeDouble,
+        coins: 20,
+    },
+    60: {
+        damage: 60,
+        icon: upg_axe,
+        coins: 30,
+    },
+    150: {
+        damage: 150,
+        icon: helmet,
+        coins: 40,
+    },
+    350: {
+        damage: 350,
+        icon: armor,
+        coins: 50,
+    },
+    750: {
+        damage: 750,
+        icon: wand,
+        coins: 60,
+    },
+    2000: {
+        damage: 2000,
+        icon: upgShieldSmall,
+        coins: 70,
+    },
+    5000: {
+        damage: 5000,
+        icon: upg_helmet,
+        coins: 80,
+    },
 };
