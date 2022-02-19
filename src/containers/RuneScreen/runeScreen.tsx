@@ -17,22 +17,21 @@ function RuneScreen(props: RuneScreenPropsType) {
     const { onRuneBuy } = props;
     return (
         <>
-            { runes.map((rune) => {
+            {runes.map((rune) => {
                 const canBuy = coin >= rune.price;
-                    return (
+                return (
                     <Rune
-                            key={rune.name}
-                            rune={rune}
-                            canBuy={canBuy}
-                            onClick={() => {
+                        key={rune.name}
+                        rune={rune}
+                        canBuy={canBuy}
+                        onClick={() => {
                             if (canBuy) {
-                                    onRuneBuy(rune);
-                                }
-                            }}
-                        />
+                                onRuneBuy(rune);
+                            }
+                        }}
+                    />
                 );
-            })
-            }
+            })}
         </>
     );
 }
