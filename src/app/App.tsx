@@ -1,16 +1,17 @@
 import React from 'react';
 import './App.scss';
-// import GameComponent from '../components/GameComponent/GameComponent';
 import MainHeader from '../components/MainHeader/MainHeader';
-import MainPage from '../components/MainPage/MainPage';
 import MainFooter from '../components/MainFooter/MainFooter';
+import useRoutes from '../components/MainPage/Routes';
 
 function App() {
+    const isAuthenticated = true;
+    const routes = useRoutes(isAuthenticated);
     return (
         <div className="App">
             <div className="app-wrapper">
                 <MainHeader />
-                <MainPage />
+                {routes}
                 <MainFooter />
             </div>
         </div>
