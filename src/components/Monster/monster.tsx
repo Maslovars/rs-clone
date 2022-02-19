@@ -23,7 +23,13 @@ function Monster(props: MonsterPropsType) {
     } = props;
 
     return (
-        <div className={`com-Monster ${name}`} style={{ top, right }}>
+        <div
+            className={`com-Monster ${name}`}
+            style={{
+                top,
+                right,
+            }}
+        >
             <div className="healthbar">
                 {receivedDamage !== undefined && receivedDamage > 0 && (
                     <div className={`damage-received ${isCriticalHit || ''}`}>
@@ -32,10 +38,14 @@ function Monster(props: MonsterPropsType) {
                 )}
                 <div
                     className="healthbar-inner"
-                    style={{ width: `${
-                            (currentHealth !== undefined && health !== undefined) && (currentHealth * 100) / health
+                    style={{
+                        width: `${
+                            currentHealth !== undefined
+                            && health !== undefined
+                            && (currentHealth * 100) / health
                         }                        
-                    }%` }}
+                    }%`,
+                    }}
                 />
             </div>
         </div>

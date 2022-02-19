@@ -14,6 +14,7 @@ type ItemBoardPropsType = {
 };
 
 function ItemBoard(props: ItemBoardPropsType) {
+    // eslint-disable-next-line object-curly-newline
     const { items, clickedIndex, onClick, start, onReceiveCoin } = props;
     const [highlight, setHighlight] = useState<boolean>(false);
     const [started] = useState<boolean>(true);
@@ -55,6 +56,7 @@ function ItemBoard(props: ItemBoardPropsType) {
         <div className="com-ItemBoard">
             {items.map((item, i) => (
                 <Item
+                    key={i.toString()}
                     i={i}
                     item={item}
                     highlight={highlight}

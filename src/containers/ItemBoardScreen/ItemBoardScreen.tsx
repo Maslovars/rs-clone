@@ -11,10 +11,13 @@ type ItemBoardScreenPropsType = {
     onReceiveCoin: (coins: number) => void;
 };
 
-const ItemBoardScreen = (props: ItemBoardScreenPropsType) => {
-    const items = useSelector<AppStateType, (ItemType | null)[]>(
+function ItemBoardScreen(props: ItemBoardScreenPropsType) {
+    // eslint-disable-next-line prettier/prettier
+    const items = useSelector<AppStateType,(ItemType | null)[]>(
         (state) => state.item.items,
-        );
+        // eslint-disable-next-line prettier/prettier
+    // eslint-disable-next-line function-paren-newline
+    );
 
     const { onReceiveCoin, start, onMergeItem } = props;
     const [started, setStarted] = useState<boolean>(false);
@@ -24,12 +27,15 @@ const ItemBoardScreen = (props: ItemBoardScreenPropsType) => {
     function produceItem() {
         dispatch({
             type: ITEM_PRODUCE,
-            payload: { items: [] },
+            payload: {
+                items: [],
+            },
         });
     }
 
     function listen() {
         setStarted(true);
+        produceItem();
         return setInterval(() => {
             produceItem();
         }, 4500);
@@ -81,6 +87,6 @@ const ItemBoardScreen = (props: ItemBoardScreenPropsType) => {
             onReceiveCoin={onReceiveCoin}
         />
     );
-};
+}
 
 export default ItemBoardScreen;

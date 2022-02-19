@@ -16,7 +16,9 @@ function Rune(props: RunePropsType) {
     if (rune.informer === 'percent') {
         per = `${(100 * rune.multiplier - 100).toFixed(2)}%`;
         current = `${(
-            100 * (rune.multiplier * rune.owned) - rune.owned * 100 + rune.base
+            100 * (rune.multiplier * rune.owned)
+            - rune.owned * 100
+            + rune.base
         ).toFixed(2)}%`;
     }
 

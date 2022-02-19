@@ -1,7 +1,7 @@
 import React from 'react';
 import './footer.scss';
 
-// import upgrade from '../../assets/gui/btn/upgrade.png';
+import upgrade from '../../assets/ui/buttons/upgrade.png';
 import shop from '../../assets/ui/buttons/shop.png';
 import settings from '../../assets/ui/buttons/settings.png';
 import about from '../../assets/ui/buttons/about.png';
@@ -41,7 +41,7 @@ function Footer(props: FooterPropsType) {
                     role="button"
                     tabIndex={0}
                 >
-                    <img src="upgrade" alt="upgrade" />
+                    <img src={upgrade} alt="upgrade" />
                     <span>Runes</span>
                 </div>
                 <div

@@ -21,14 +21,9 @@
         "@typescript-eslint"
     ],
     "rules": {
-      "object-curly-newline": ["error", {
-        "ObjectExpression": "always",
-        "ObjectPattern": { "multiline": true },
-        "ImportDeclaration": "never",
-        "ExportDeclaration": { "multiline": true, "minProperties": 3 }
-      }],
-      "no-shadow": "off",
-      "@typescript-eslint/no-shadow": ["off"],
+        "comma-spacing": 0,
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["off"],
         "react/jsx-filename-extension": [
             "warn",
             {
@@ -58,21 +53,18 @@
             "error",
             4
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-      "jsx-a11y/click-events-have-key-events": 0,
-      "no-param-reassign": 0,
-      "max-len": ["error", { "code": 120 }],
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": ["error"],
-      "prettier/prettier": [
-        "error",
-        {
-          "endOfLine": "auto"
-        }
-      ]
+        "linebreak-style": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "no-param-reassign": 0,
+    "max-len": ["error", { "code": 120 }],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "prettier/prettier": [
+    "error",
+    {
+        "endOfLine": "auto"
+    }
+    ]
     },
     "settings": {
         "import/resolver": {

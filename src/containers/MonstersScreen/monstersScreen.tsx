@@ -37,7 +37,9 @@ function MonstersScreen(props: MonstersScreenPropsType) {
     function listen() {
         setStarted(true);
         setInterval(() => {
-            const clone = { ...monster };
+            const clone = {
+                ...monster,
+            };
 
             const critRoll = getRandomIntInclusive(0, 100);
 

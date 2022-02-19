@@ -7,7 +7,9 @@ export type InitialPopupType = {
 export const openPopup = (open: string | null) => {
     return {
         type: POPUP_OPEN,
-        payload: { open },
+        payload: {
+            open,
+        },
     } as const;
 };
 

@@ -26,7 +26,7 @@ import MonstersScreen from '../MonstersScreen/monstersScreen';
 import FooterGame from '../FooterGame/footerGame';
 import Tutorial from '../../components/Tutorial/tutorial';
 import Popup from '../../components/Popup/popup';
-import stateGame from './stateGame';
+import { GameConfig } from './stateGame';
 import './game.scss';
 
 function Game() {
@@ -36,13 +36,13 @@ function Game() {
     const dispatch = useDispatch();
     const [bgm, setBgm] = useState<boolean>(true);
     const [onboardingStep, setOnboardingStep] = useState<number>(
-        stateGame.onboardingStep,
+        GameConfig.onboardingStep,
     );
-    const [level, setLevel] = useState<number>(stateGame.level);
+    const [level, setLevel] = useState<number>(GameConfig.level);
 
-    setInterval(() => {
-        localStorage.setItem('game-data', JSON.stringify(stateGame));
-    }, 5000);
+    /* setInterval(() => {
+        localStorage.setItem('game-data', JSON.stringify(GameConfig));
+    }, 5000); */
 
     /*    function getBoxes() {
         return (
@@ -82,11 +82,15 @@ function Game() {
                         onRuneBuy={(rune) => {
                             dispatch({
                                 type: COIN_SPENT,
-                                payload: { coins: rune.price },
+                                payload: {
+                                    coins: rune.price,
+                                },
                             });
                             dispatch({
                                 type: RUNE_BUY,
-                                payload: { rune },
+                                payload: {
+                                    rune,
+                                },
                             });
                         }}
                     />
@@ -170,7 +174,9 @@ function Game() {
                 onReceiveCoin={(coins) => {
                     dispatch({
                         type: COIN_RECEIVED,
-                        payload: { coins },
+                        payload: {
+                            coins,
+                        },
                     });
                 }}
             />
@@ -184,17 +190,29 @@ function Game() {
                 onMonsterDie={(level, monster) => {
                     setLevel(level);
                     // stateGame.phaserGame.instance.events.emit("onMonsterDie", level)
-                    dispatch({ type: MONSTER_DIE, payload: { level } });
+                    dispatch({
+                        type: MONSTER_DIE,
+                        payload: {
+                            level,
+                        },
+                    });
 
                     if (monster[level].loot) {
                         dispatch({
                             type: ITEM_PRODUCE,
-                            payload: { items: [ITEM_LEVEL_MAP[1]] },
+                            payload: {
+                                items: [ITEM_LEVEL_MAP[1]],
+                            },
                         });
                     }
                 }}
                 onMonsterHit={(monster) => {
-                    dispatch({ type: MONSTER_UPDATE, payload: { monster } });
+                    dispatch({
+                        type: MONSTER_UPDATE,
+                        payload: {
+                            monster,
+                        },
+                    });
                 }}
             />
         );
@@ -223,7 +241,7 @@ function Game() {
     }
     return (
         <div className="game-container">
-            <audio
+            <audio 
                 preload="auto"
                 autoPlay
                 loop
@@ -232,8 +250,8 @@ function Game() {
             />
             <div className={`'screen' ${popup.open ? 'popupActive' : ''}`}>
                 <IonPhaser
-                    game={stateGame.phaserGame}
-                    initialize={stateGame.bgm}
+                    game={GameConfig.phaserGame}
+                    initialize={GameConfig.bgm}
                 />
                 {renderContent()}
             </div>
@@ -242,7 +260,9 @@ function Game() {
                     type={popup.open}
                     content={getPopupContent()}
                     onClose={() => {
-                        dispatch({ type: POPUP_CLOSE });
+                        dispatch({
+                            type: POPUP_CLOSE,
+                        });
                     }}
                 />
             )}
