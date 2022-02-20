@@ -20,7 +20,7 @@ import Tutorial from '../../components/Tutorial/tutorial';
 import Popup from '../../components/Popup/popup';
 import { GameConfig } from './stateGame';
 import './game.scss';
-import { coinReceived, coinSpent, runeBuy } from '../../reducers/coin';
+import { coinSpent, runeBuy } from '../../reducers/coin';
 import { itemMerge, itemProduce } from '../../reducers/item';
 import { monsterDie, monsterUpdate } from '../../reducers/monster';
 
@@ -132,9 +132,6 @@ function Game() {
                     }
 
                     dispatch(itemMerge(fromIndex, toIndex));
-                }}
-                onReceiveCoin={(coins) => {
-                    dispatch(coinReceived(coins));
                 }}
             />
         );

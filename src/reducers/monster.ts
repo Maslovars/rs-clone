@@ -7,18 +7,14 @@ export type InitialMonsterType = {
 export const monsterUpdate = (monster: objMonsterType) => {
     return {
         type: MONSTER_UPDATE,
-        payload: {
-            monster,
-        },
+        payload: { monster },
     } as const;
 };
 
 export const monsterDie = (level: number) => {
     return {
         type: MONSTER_DIE,
-        payload: {
-            level,
-        },
+        payload: { level },
     } as const;
 };
 

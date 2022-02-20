@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { COIN_RECEIVE_SHOW_DURATION, ItemType } from '../../constants/items';
 import Item from './Item/item';
 import './itemBoard.scss';
+import { coinReceived } from '../../reducers/coin';
 
 type ItemBoardPropsType = {
     start: boolean;
     items: (ItemType | null)[];
     clickedIndex: number | null;
     onClick: (item: ItemType | null, index: number) => void;
-    onReceiveCoin: (coins: number) => void;
 };
 
 function ItemBoard(props: ItemBoardPropsType) {
-    const { items, clickedIndex, onClick, start, onReceiveCoin } = props;
+    const { items, clickedIndex, onClick, start } = props;
     const [highlight, setHighlight] = useState<boolean>(false);
-    const [started] = useState<boolean>(true);
+    const [started, setStarted] = useState<boolean>(false);
+    // eslint-disable-next-line no-undef
+    const [intervalId, setIntervalId] = useState<NodeJS.Timer | null>(null);
+    const dispatch = useDispatch();
 
-    function listen() {
-        return setInterval(() => {
+    useEffect(() => {
+        if (started) {
+            return;
+        }
+        if (!start) {
+            return;
+        }
+        setStarted(true);
+        const id = setInterval(() => {
             if (!start) {
                 return;
             }
@@ -29,25 +40,19 @@ function ItemBoard(props: ItemBoardPropsType) {
                 }
                 return acc;
             }, 0);
-            debugger;
-            onReceiveCoin(coins);
-
+            dispatch(coinReceived(coins));
             setTimeout(() => {
                 setHighlight(false);
             }, COIN_RECEIVE_SHOW_DURATION);
         }, 2500);
-    }
+        setIntervalId(id);
+    }, [started, start, items]);
 
+    // eslint-disable-next-line consistent-return
     useEffect(() => {
-        if (started) {
-            return;
+        if (intervalId) {
+            return () => clearInterval(intervalId);
         }
-        if (!start) {
-            return;
-        }
-        const id = listen();
-        debugger;
-        clearInterval(id);
     }, []);
 
     return (

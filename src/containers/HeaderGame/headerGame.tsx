@@ -1,8 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { AppStateType } from '../../app/redux-store';
 import Counter from '../../components/Counter/counter';
 import useCoinsSelectors from '../../selectors/coinsSelector';
+import useDpsSelectors from '../../selectors/dpsSelector';
 
 type HeaderPropsType = {
     level: number;
@@ -10,9 +9,8 @@ type HeaderPropsType = {
 
 const HeaderGame = React.memo((props: HeaderPropsType) => {
     const { coins } = useCoinsSelectors();
-    const dps = useSelector<AppStateType, number>((state) => state.item.dps);
+    const { dps } = useDpsSelectors();
     const { level } = props;
-
     return <Counter level={level} dps={dps} coins={coins} />;
 });
 
