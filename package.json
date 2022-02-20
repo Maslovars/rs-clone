@@ -13,6 +13,8 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-redux": "^7.1.22",
+    "materialize-css": "^1.0.0-rc.2",
+    "noop-ts": "^1.0.3",
     "phaser": "^3.55.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -35,6 +37,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
+  "proxy": "http://localhost:5000",
   "browserslist": {
     "production": [
       ">0.2%",
