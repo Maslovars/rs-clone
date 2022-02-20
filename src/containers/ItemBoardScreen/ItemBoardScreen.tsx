@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppStateType } from '../../app/redux-store';
+import { useDispatch } from 'react-redux';
 import { ItemType } from '../../constants/items';
 import ItemBoard from '../../components/ItemBoard/itemBoard';
-import { ITEM_PRODUCE } from '../../constants';
+import { itemProduce } from '../../reducers/item';
+import useItemsSelectors from '../../selectors/itemSelector';
 
 type ItemBoardScreenPropsType = {
     start: boolean;
@@ -12,21 +12,14 @@ type ItemBoardScreenPropsType = {
 };
 
 function ItemBoardScreen(props: ItemBoardScreenPropsType) {
-    const items = useSelector<AppStateType,(ItemType | null)[]>(
-        (state) => state.item.items);
-
+    const { items } = useItemsSelectors();
     const { onReceiveCoin, start, onMergeItem } = props;
     const [started, setStarted] = useState<boolean>(false);
     const [clickedIndex, setClickedIndex] = useState<number | null>(null);
     const dispatch = useDispatch();
 
     function produceItem() {
-        dispatch({
-            type: ITEM_PRODUCE,
-            payload: {
-                items: [],
-            },
-        });
+        dispatch(itemProduce([]));
     }
 
     function listen() {

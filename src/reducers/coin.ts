@@ -28,7 +28,7 @@ export const coinSpent = (coins: number) => {
     } as const;
 };
 
-export const coinBuy = (rune: RunesListType) => {
+export const runeBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
         payload: {
@@ -40,7 +40,7 @@ export const coinBuy = (rune: RunesListType) => {
 export type ActionsCoinType =
     | ReturnType<typeof coinReceived>
     | ReturnType<typeof coinSpent>
-    | ReturnType<typeof coinBuy>;
+    | ReturnType<typeof runeBuy>;
 
 const initialStateCoin: InitialCoinType = {
     coins: 0,

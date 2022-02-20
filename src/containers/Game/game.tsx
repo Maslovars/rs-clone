@@ -3,22 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IonPhaser } from '@ion-phaser/react';
 import { AppStateType } from '../../app/redux-store';
 import {
-    COIN_RECEIVED,
-    COIN_SPENT,
-    ITEM_MERGE,
-    ITEM_PRODUCE,
-    MONSTER_DIE,
-    MONSTER_UPDATE,
-    POPUP_CLOSE,
     POPUP_SCREEN_ABOUT,
     POPUP_SCREEN_FAQ,
     POPUP_SCREEN_SETTINGS,
     POPUP_SCREEN_SHOP,
     POPUP_SCREEN_UPGRADE,
 } from '../../constants';
-import { RUNE_BUY } from '../../constants/runes';
 import RuneScreen from '../RuneScreen/runeScreen';
-import { InitialPopupType } from '../../reducers/popup';
+import { closePopup, InitialPopupType } from '../../reducers/popup';
 import ItemBoardScreen from '../ItemBoardScreen/ItemBoardScreen';
 import { ITEM_LEVEL_MAP } from '../../constants/items';
 import HeaderGame from '../HeaderGame/headerGame';
@@ -26,8 +18,11 @@ import MonstersScreen from '../MonstersScreen/monstersScreen';
 import FooterGame from '../FooterGame/footerGame';
 import Tutorial from '../../components/Tutorial/tutorial';
 import Popup from '../../components/Popup/popup';
-import stateGame from './stateGame';
+import { GameConfig } from './stateGame';
 import './game.scss';
+import { coinReceived, coinSpent, runeBuy } from '../../reducers/coin';
+import { itemMerge, itemProduce } from '../../reducers/item';
+import { monsterDie, monsterUpdate } from '../../reducers/monster';
 
 function Game() {
     const popup = useSelector<AppStateType, InitialPopupType>(
@@ -36,26 +31,9 @@ function Game() {
     const dispatch = useDispatch();
     const [bgm, setBgm] = useState<boolean>(true);
     const [onboardingStep, setOnboardingStep] = useState<number>(
-        stateGame.onboardingStep,
+        GameConfig.onboardingStep,
     );
-    const [level, setLevel] = useState<number>(stateGame.level);
-
-    setInterval(() => {
-        localStorage.setItem('game-data', JSON.stringify(stateGame));
-    }, 5000);
-
-    /*    function getBoxes() {
-        return (
-            <Canvas className="canvas">
-                <ambientLight />
-                <pointLight position={[10, 10, 10]} />
-                <Box position={[-2, -1, 0]} turningSpeed={0.01} />
-                <Box position={[0, 0, 0]} turningSpeed={0.03} />
-                <Box position={[2, 1, 0]} turningSpeed={0.075} />
-                {/!*<Line />*!/}
-            </Canvas>
-        )
-    } */
+    const [level, setLevel] = useState<number>(GameConfig.level);
 
     function getSettings() {
         return (
@@ -80,18 +58,8 @@ function Game() {
                 return (
                     <RuneScreen
                         onRuneBuy={(rune) => {
-                            dispatch({
-                                type: COIN_SPENT,
-                                payload: {
-                                    coins: rune.price,
-                                },
-                            });
-                            dispatch({
-                                type: RUNE_BUY,
-                                payload: {
-                                    rune,
-                                },
-                            });
+                            dispatch(coinSpent(rune.price));
+                            dispatch(runeBuy(rune));
                         }}
                     />
                 );
@@ -163,21 +131,10 @@ function Game() {
                         setOnboardingStep(onboardingStep + 1);
                     }
 
-                    dispatch({
-                        type: ITEM_MERGE,
-                        payload: {
-                            fromIndex,
-                            toIndex,
-                        },
-                    });
+                    dispatch(itemMerge(fromIndex, toIndex));
                 }}
                 onReceiveCoin={(coins) => {
-                    dispatch({
-                        type: COIN_RECEIVED,
-                        payload: {
-                            coins,
-                        },
-                    });
+                    dispatch(coinReceived(coins));
                 }}
             />
         );
@@ -190,33 +147,18 @@ function Game() {
                 onMonsterDie={(level, monster) => {
                     setLevel(level);
                     // @ts-ignore
-                    stateGame.phaserGame.instance.events.emit(
+                    GameConfig.phaserGame.instance.events.emit(
                         'onMonsterDie',
                         level,
                     );
-                    dispatch({
-                        type: MONSTER_DIE,
-                        payload: {
-                            level,
-                        },
-                    });
+                    dispatch(monsterDie(level));
 
-                    if (monster[level].loot) {
-                        dispatch({
-                            type: ITEM_PRODUCE,
-                            payload: {
-                                items: [ITEM_LEVEL_MAP[1]],
-                            },
-                        });
+                    if (monster.loot) {
+                        dispatch(itemProduce([ITEM_LEVEL_MAP[1]]));
                     }
                 }}
                 onMonsterHit={(monster) => {
-                    dispatch({
-                        type: MONSTER_UPDATE,
-                        payload: {
-                            monster,
-                        },
-                    });
+                    dispatch(monsterUpdate(monster));
                 }}
             />
         );
@@ -245,6 +187,7 @@ function Game() {
     }
     return (
         <div className="game-container">
+            {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
             <audio
                 preload="auto"
                 autoPlay
@@ -252,10 +195,10 @@ function Game() {
                 muted={!bgm}
                 src="../../assets/music/the_path_of_the_goblin_king.mp3"
             />
-            <div className={`'screen' ${popup.open ? 'popupActive' : ''}`}>
+            <div className={`screen ${popup.open ? 'popupActive' : ''}`}>
                 <IonPhaser
-                    game={stateGame.phaserGame}
-                    initialize={stateGame.bgm}
+                    game={GameConfig.phaserGame}
+                    initialize={GameConfig.bgm}
                 />
                 {renderContent()}
             </div>
@@ -264,9 +207,7 @@ function Game() {
                     type={popup.open}
                     content={getPopupContent()}
                     onClose={() => {
-                        dispatch({
-                            type: POPUP_CLOSE,
-                        });
+                        dispatch(closePopup());
                     }}
                 />
             )}
