@@ -5,7 +5,7 @@ import MainFooter from '../components/MainFooter/MainFooter';
 import useRoutes from '../components/MainPage/Routes';
 
 function App() {
-    const isAuthenticated = true;
+    const isAuthenticated = false;
     const routes = useRoutes(isAuthenticated);
     return (
         <div className="App">
