@@ -55,7 +55,8 @@ const generateMonstersMap = () => {
     [...new Array(100)].forEach((k, i) => {
         const level = (i + 1) as number;
         let health = Math.round(10 * level * (1 + level / 2));
-        let monster =            monstersList[Math.floor(Math.random() * monstersList.length)];
+        let monster =
+            monstersList[Math.floor(Math.random() * monstersList.length)];
 
         if (level === 1) {
             monster = 'Troll_3';

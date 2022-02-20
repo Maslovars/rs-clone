@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ItemType } from '../../constants/items';
+import { ITEM_LEVEL_MAP, ItemType } from '../../constants/items';
 import ItemBoard from '../../components/ItemBoard/itemBoard';
 import { itemProduce } from '../../reducers/item';
 import useItemsSelectors from '../../selectors/itemSelector';
@@ -8,26 +8,16 @@ import useItemsSelectors from '../../selectors/itemSelector';
 type ItemBoardScreenPropsType = {
     start: boolean;
     onMergeItem: (clickedIndex: number, index: number) => void;
-    onReceiveCoin: (coins: number) => void;
 };
 
 function ItemBoardScreen(props: ItemBoardScreenPropsType) {
     const { items } = useItemsSelectors();
-    const { onReceiveCoin, start, onMergeItem } = props;
+    const { start, onMergeItem } = props;
     const [started, setStarted] = useState<boolean>(false);
+    // eslint-disable-next-line no-undef
+    const [intervalId, setIntervalId] = useState<NodeJS.Timer | null>(null);
     const [clickedIndex, setClickedIndex] = useState<number | null>(null);
     const dispatch = useDispatch();
-
-    function produceItem() {
-        dispatch(itemProduce([]));
-    }
-
-    function listen() {
-        setStarted(true);
-        return setInterval(() => {
-            produceItem();
-        }, 4500);
-    }
 
     useEffect(() => {
         if (started) {
@@ -36,8 +26,19 @@ function ItemBoardScreen(props: ItemBoardScreenPropsType) {
         if (!start) {
             return;
         }
-        const id = listen();
-        clearInterval(id);
+
+        setStarted(true);
+        const id = setInterval(() => {
+            dispatch(itemProduce([ITEM_LEVEL_MAP[1]]));
+        }, 4500);
+        setIntervalId(id);
+    }, [started, start]);
+
+    // eslint-disable-next-line consistent-return
+    useEffect(() => {
+        if (intervalId) {
+            return () => clearInterval(intervalId);
+        }
     }, []);
 
     const onItemClick = (item: ItemType | null, index: number) => {
@@ -72,7 +73,6 @@ function ItemBoardScreen(props: ItemBoardScreenPropsType) {
             items={items}
             clickedIndex={clickedIndex}
             onClick={onItemClick}
-            onReceiveCoin={onReceiveCoin}
         />
     );
 }

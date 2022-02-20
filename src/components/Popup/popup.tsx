@@ -3,6 +3,7 @@ import './popup.scss';
 
 type PopupPropsType = {
     type: string;
+    // eslint-disable-next-line no-undef
     content: JSX.Element | null;
     onClose: () => void;
 };

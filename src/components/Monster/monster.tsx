@@ -7,7 +7,7 @@ type MonsterPropsType = {
     right?: number;
     health?: number;
     currentHealth?: number;
-    receivedDamage?: number | undefined;
+    receivedDamage?: number;
     isCriticalHit?: boolean;
 };
 
@@ -31,6 +31,12 @@ function Monster(props: MonsterPropsType) {
         isCriticalHit,
     } = props;
 
+    // eslint-disable-next-line consistent-return
+    function styles() {
+        if (currentHealth && health) {
+            return (currentHealth * 100) / health;
+        }
+    }
     return (
         <div
             className={`com-Monster ${name}`}
@@ -51,7 +57,7 @@ function Monster(props: MonsterPropsType) {
                 )}
                 <div
                     className="healthbar-inner"
-                    style={{ width: `${(currentHealth! * 100) / health!}}%` }}
+                    style={{ width: `${styles()}}%` }}
                 />
             </div>
         </div>
