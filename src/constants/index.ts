@@ -50,6 +50,7 @@ export type objMonsterType = {
 };
 
 const generateMonstersMap = () => {
+    // eslint-disable-next-line object-curly-newline
     const obj = {} as { [key: number]: objMonsterType };
 
     [...new Array(100)].forEach((k, i) => {
@@ -83,9 +84,9 @@ const generateMonstersMap = () => {
 
         obj[level] = {
             name: monster,
-            health: health,
+            health,
             currentHealth: health,
-            top: 225,
+            top: 300,
             right: 20,
             loot: i % 3 === 1,
         };

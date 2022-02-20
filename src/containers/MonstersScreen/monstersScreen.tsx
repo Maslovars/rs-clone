@@ -1,32 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { AppStateType } from '../../app/redux-store';
 import { getRandomIntInclusive } from '../../helpers/random';
 import { GAME_SPEED_MULTIPLIER, objMonsterType } from '../../constants';
 import Monster from '../../components/Monster/monster';
+import useDpsSelectors from '../../selectors/dpsSelector';
+import useMonsterSelectors from '../../selectors/monsterSelector';
+import useSheetsSelectors from '../../selectors/sheetSelector';
 
 type MonstersScreenPropsType = {
-    onMonsterHit: (monster: { [key: number]: objMonsterType }) => void;
-    onMonsterDie: (
-        level: number,
-        monster: { [key: number]: objMonsterType },
-    ) => void;
+    onMonsterHit: (monster: objMonsterType) => void;
+    onMonsterDie: (level: number, monster: objMonsterType) => void;
     start: boolean;
     level: number;
 };
 
 function MonstersScreen(props: MonstersScreenPropsType) {
-    const dps = useSelector<AppStateType, number>((state) => state.item.dps);
-    const monster = useSelector<
-        AppStateType,
-        { [key: number]: objMonsterType }
-    >((state) => state.monster.monster);
-    const critRate = useSelector<AppStateType, number>(
-        (state) => state.sheet.critRate,
-    );
-    const critDamage = useSelector<AppStateType, number>(
-        (state) => state.sheet.critDamage,
-    );
+    const { dps } = useDpsSelectors();
+    const { monster } = useMonsterSelectors();
+    const { critRate } = useSheetsSelectors();
+    const { critDamage } = useSheetsSelectors();
 
     const { start, onMonsterHit, onMonsterDie, level } = props;
     let receivedDamage: number | undefined;
@@ -37,7 +28,9 @@ function MonstersScreen(props: MonstersScreenPropsType) {
     function listen() {
         setStarted(true);
         setInterval(() => {
-            const clone = { ...monster };
+            const clone = {
+                ...monster,
+            };
 
             const critRoll = getRandomIntInclusive(0, 100);
 
@@ -51,9 +44,9 @@ function MonstersScreen(props: MonstersScreenPropsType) {
                 receivedDamage = Math.round(dps / GAME_SPEED_MULTIPLIER);
             }
 
-            clone[level].currentHealth -= receivedDamage;
+            clone.currentHealth -= receivedDamage;
 
-            if (clone[level].currentHealth <= 0) {
+            if (clone.currentHealth <= 0) {
                 onMonsterDie(level + 1, clone);
                 return;
             }
@@ -76,7 +69,7 @@ function MonstersScreen(props: MonstersScreenPropsType) {
         <Monster
             isCriticalHit={isCriticalHit}
             receivedDamage={receivedDamage}
-            {...monster[level]}
+            {...monster}
         />
     );
 }

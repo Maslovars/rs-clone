@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:prettier/recommended",
@@ -21,14 +22,16 @@
         "@typescript-eslint"
     ],
     "rules": {
-      "object-curly-newline": ["error", {
+        "no-debugger": 0,
+        "object-curly-newline": ["error", {
         "ObjectExpression": "always",
-        "ObjectPattern": { "multiline": true },
-        "ImportDeclaration": "never",
-        "ExportDeclaration": { "multiline": true, "minProperties": 3 }
-      }],
-      "no-shadow": "off",
-      "@typescript-eslint/no-shadow": ["off"],
+        "ObjectPattern": { "multiline": true }
+        }],
+        "import/no-extraneous-dependencies": ["error",  {"devDependencies": true}],
+        "react/jsx-props-no-spreading": "off",
+        "comma-spacing": 0,
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["off"],
         "react/jsx-filename-extension": [
             "warn",
             {
@@ -70,7 +73,9 @@
       "prettier/prettier": [
         "error",
         {
-          "endOfLine": "auto"
+          "singleQuote": true,
+          "endOfLine": "auto",
+          "tabWidth": 4
         }
       ]
     },

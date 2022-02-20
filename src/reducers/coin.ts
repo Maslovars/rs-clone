@@ -13,28 +13,34 @@ export type InitialCoinType = {
 export const coinReceived = (coins: number) => {
     return {
         type: COIN_RECEIVED,
-        payload: { coins },
+        payload: {
+            coins,
+        },
     } as const;
 };
 
 export const coinSpent = (coins: number) => {
     return {
         type: COIN_SPENT,
-        payload: { coins },
+        payload: {
+            coins,
+        },
     } as const;
 };
 
-export const coinBuy = (rune: RunesListType) => {
+export const runeBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
-        payload: { rune },
+        payload: {
+            rune,
+        },
     } as const;
 };
 
 export type ActionsCoinType =
     | ReturnType<typeof coinReceived>
     | ReturnType<typeof coinSpent>
-    | ReturnType<typeof coinBuy>;
+    | ReturnType<typeof runeBuy>;
 
 const initialStateCoin: InitialCoinType = {
     coins: 0,

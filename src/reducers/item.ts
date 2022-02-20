@@ -12,23 +12,31 @@ export type InitialItemType = {
     produceLevel: ProduceLevelType;
 };
 
-export const itemProduce = () => {
+export const itemProduce = (items: ItemType[]) => {
     return {
         type: ITEM_PRODUCE,
+        payload: {
+            items,
+        },
     } as const;
 };
 
 export const itemMerge = (fromIndex: number, toIndex: number) => {
     return {
         type: ITEM_MERGE,
-        payload: { fromIndex, toIndex },
+        payload: {
+            fromIndex,
+            toIndex,
+        },
     } as const;
 };
 
 export const runeBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
-        payload: { rune },
+        payload: {
+            rune,
+        },
     } as const;
 };
 

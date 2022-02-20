@@ -38,7 +38,7 @@ function Item(props: ItemPropsType) {
                 <div className="item-damage">{item.damage}</div>
                 <div className="item-coin">{item.coins}</div>
             </div>
-            {/*  <img src={props.item.icon} /> */}
+            <img src={item.icon} alt="weapons" />
         </div>
     );
 }

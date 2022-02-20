@@ -1,35 +1,28 @@
-import {
-    MONSTER_DIE,
-    MONSTER_UPDATE,
-    MONSTERS_MAP,
-    objMonsterType,
-    STARTING_LEVEL,
-} from '../constants';
+import { MONSTER_DIE, MONSTER_UPDATE, MONSTERS_MAP, objMonsterType, STARTING_LEVEL } from '../constants';
 
 export type InitialMonsterType = {
-    monster: { [key: number]: objMonsterType };
+    monster: objMonsterType;
 };
 
-export const monsterUpdate = (monster: { [key: number]: objMonsterType }) => {
+export const monsterUpdate = (monster: objMonsterType) => {
     return {
         type: MONSTER_UPDATE,
-        payload: { monster },
+        payload: {
+            monster,
+        },
     } as const;
 };
 
-export const monsterDie = (
-    key: number,
-    monster: { [key: number]: objMonsterType },
-) => {
+export const monsterDie = (level: number) => {
     return {
         type: MONSTER_DIE,
-        payload: { key, monster },
-    };
+        payload: {
+            level,
+        },
+    } as const;
 };
 
-export type ActionsMonsterType =
-    | ReturnType<typeof monsterUpdate>
-    | ReturnType<typeof monsterDie>;
+export type ActionsMonsterType = ReturnType<typeof monsterUpdate> | ReturnType<typeof monsterDie>;
 
 const initialStateMonster: InitialMonsterType = {
     monster: MONSTERS_MAP[STARTING_LEVEL],
@@ -50,7 +43,7 @@ export const monsterReducer = (
         case MONSTER_DIE:
             return {
                 ...state,
-                monster: MONSTERS_MAP[action.payload.key],
+                monster: MONSTERS_MAP[action.payload.level],
             };
 
         default:

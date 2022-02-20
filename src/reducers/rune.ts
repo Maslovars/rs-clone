@@ -7,7 +7,9 @@ export type InitialRuneType = {
 export const runeBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
-        payload: { rune },
+        payload: {
+            rune,
+        },
     };
 };
 
