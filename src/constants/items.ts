@@ -2,11 +2,11 @@ import armor from '../assets/weapons/armor.png';
 import helmet from '../assets/weapons/helmet.png';
 import sword from '../assets/weapons/sword.png';
 import swordWood from '../assets/weapons/swordWood.png';
-import upg_axe from '../assets/weapons/upg_axe.png';
-import upg_axeDouble from '../assets/weapons/upg_axeDouble.png';
-import upg_bow from '../assets/weapons/upg_bow.png';
-import upg_helmet from '../assets/weapons/upg_helmet.png';
-import upg_spear from '../assets/weapons/upg_spear.png';
+import upgAxe from '../assets/weapons/upg_axe.png';
+import upgAxeDouble from '../assets/weapons/upg_axeDouble.png';
+import upgBow from '../assets/weapons/upg_bow.png';
+import upgHelmet from '../assets/weapons/upg_helmet.png';
+import upgSpear from '../assets/weapons/upg_spear.png';
 import upgShieldSmall from '../assets/weapons/upgShieldSmall.png';
 import wand from '../assets/weapons/wand.png';
 
@@ -58,22 +58,22 @@ export const ITEM_LEVEL_MAP: ItemLevelMapType = {
     },
     5: {
         damage: 5,
-        icon: upg_bow,
+        icon: upgBow,
         coins: 5,
     },
     12: {
         damage: 12,
-        icon: upg_spear,
+        icon: upgSpear,
         coins: 10,
     },
     26: {
         damage: 26,
-        icon: upg_axeDouble,
+        icon: upgAxeDouble,
         coins: 20,
     },
     60: {
         damage: 60,
-        icon: upg_axe,
+        icon: upgAxe,
         coins: 30,
     },
     150: {
@@ -98,7 +98,7 @@ export const ITEM_LEVEL_MAP: ItemLevelMapType = {
     },
     5000: {
         damage: 5000,
-        icon: upg_helmet,
+        icon: upgHelmet,
         coins: 80,
     },
 };

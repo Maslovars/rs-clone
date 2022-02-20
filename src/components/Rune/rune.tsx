@@ -28,7 +28,7 @@ function Rune(props: RunePropsType) {
     }
     return (
         <div className={`com-Rune ${canBuy || ''}`}>
-            {/* <img src={rune.icon} /> */}
+            <img src={rune.icon} alt="rune-icon" />
             <div className="rune-upgrade-box">
                 <h1>{rune.name}</h1>
                 <h3>{rune.description}</h3>

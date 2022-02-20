@@ -12,9 +12,12 @@ export type InitialItemType = {
     produceLevel: ProduceLevelType;
 };
 
-export const itemProduce = () => {
+export const itemProduce = (items: ItemType[]) => {
     return {
         type: ITEM_PRODUCE,
+        payload: {
+            items,
+        },
     } as const;
 };
 

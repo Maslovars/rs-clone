@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ItemType } from '../../constants/items';
+import { COIN_RECEIVE_SHOW_DURATION, ItemType } from '../../constants/items';
 import Item from './Item/item';
 import './itemBoard.scss';
-
-export const COIN_RECEIVE_SHOW_DURATION = 500;
 
 type ItemBoardPropsType = {
     start: boolean;
