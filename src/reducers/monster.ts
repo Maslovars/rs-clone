@@ -1,10 +1,4 @@
-import {
-    MONSTER_DIE,
-    MONSTER_UPDATE,
-    MONSTERS_MAP,
-    objMonsterType,
-    STARTING_LEVEL,
-} from '../constants';
+import { MONSTER_DIE, MONSTER_UPDATE, MONSTERS_MAP, objMonsterType, STARTING_LEVEL } from '../constants';
 
 export type InitialMonsterType = {
     monster: objMonsterType;
@@ -24,9 +18,7 @@ export const monsterDie = (level: number) => {
     } as const;
 };
 
-export type ActionsMonsterType =
-    | ReturnType<typeof monsterUpdate>
-    | ReturnType<typeof monsterDie>;
+export type ActionsMonsterType = ReturnType<typeof monsterUpdate> | ReturnType<typeof monsterDie>;
 
 const initialStateMonster: InitialMonsterType = {
     monster: MONSTERS_MAP[STARTING_LEVEL],

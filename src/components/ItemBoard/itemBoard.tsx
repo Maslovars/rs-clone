@@ -40,9 +40,7 @@ function ItemBoard(props: ItemBoardPropsType) {
                 }
                 return acc;
             }, 0);
-
             dispatch(coinReceived(coins));
-
             setTimeout(() => {
                 setHighlight(false);
             }, COIN_RECEIVE_SHOW_DURATION);
@@ -60,13 +58,8 @@ function ItemBoard(props: ItemBoardPropsType) {
     return (
         <div className="com-ItemBoard">
             {items.map((item, i) => (
-                <Item
-                    i={i}
-                    item={item}
-                    highlight={highlight}
-                    clickedIndex={clickedIndex}
-                    onClick={onClick}
-                />
+                // eslint-disable-next-line max-len
+                <Item key={i.toString()} item={item} highlight={highlight} clickedIndex={clickedIndex} onClick={onClick} i={i} />
             ))}
         </div>
     );

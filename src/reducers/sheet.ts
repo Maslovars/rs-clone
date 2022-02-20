@@ -1,9 +1,4 @@
-import {
-    RUNE_BUY,
-    RUNE_TYPE_DAMAGE_CRIT_MULTI,
-    RUNE_TYPE_DAMAGE_CRIT_RATE,
-    RunesListType,
-} from '../constants/runes';
+import { RUNE_BUY, RUNE_TYPE_DAMAGE_CRIT_MULTI, RUNE_TYPE_DAMAGE_CRIT_RATE, RunesListType } from '../constants/runes';
 
 export type InitialSheetType = {
     critRate: number;
@@ -43,9 +38,7 @@ export const sheetReducer = (
             if (action.payload.rune.type === RUNE_TYPE_DAMAGE_CRIT_MULTI) {
                 return {
                     ...state,
-                    critDamage: +(
-                        state.critDamage * action.payload.rune.multiplier
-                    ).toFixed(2),
+                    critDamage: +(state.critDamage * action.payload.rune.multiplier).toFixed(2),
                 };
             }
 

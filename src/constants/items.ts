@@ -12,18 +12,7 @@ import wand from '../assets/weapons/wand.png';
 
 export const COIN_RECEIVE_SHOW_DURATION = 500;
 
-export type ProduceLevelType =
-    | 1
-    | 2
-    | 5
-    | 12
-    | 26
-    | 60
-    | 150
-    | 350
-    | 750
-    | 2000
-    | 5000;
+export type ProduceLevelType = 1 | 2 | 5 | 12 | 26 | 60 | 150 | 350 | 750 | 2000 | 5000;
 
 export type ItemType = {
     damage: ProduceLevelType;
