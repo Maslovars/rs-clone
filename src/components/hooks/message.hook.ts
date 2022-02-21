@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import "materialize-css/dist/js/materialize.min.js";
 
 declare global {
     interface Window {

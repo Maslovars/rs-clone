@@ -1,0 +1,14 @@
+.connection-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 365px;
+    height: 472px;
+    background-image: url("../../assets/connectionForm/form-background.png");
+    .connection-form__inputs {
+        display: flex;
+        flex-direction: column;
+        padding-top: 100px;        
+    }
+}

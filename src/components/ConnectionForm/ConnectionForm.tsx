@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import './ConnectionForm.scss';
 import { AuthContext } from '../context/AuthContext';
 import useHttp from '../hooks/http.hook';
 import useMessage from '../hooks/message.hook';
@@ -26,7 +27,6 @@ const ConnectionForm = () => {
     const registerHandler = async () => {
         try {
             const data = await request('api/auth/register', 'POST', { ...form });
-            // console.log('Data:', data);
             message(data.message);
         } catch (err) { }
     }
@@ -40,8 +40,7 @@ const ConnectionForm = () => {
 
     return (
         <div className="connection-form">
-            <h2 className="connection-form__title">welcome</h2>
-            <div>
+            <div className="connection-form__inputs">
                 <label htmlFor="userName">Name</label>
                 <input
                     placeholder="Enter your name"

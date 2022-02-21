@@ -32,6 +32,10 @@ body {
 .main-page {
     /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
     flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
   }
 
 .main-footer {

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import 'materialize-css/dist/css/materialize.min.css';
+// import 'materialize-css/dist/css/materialize.min.css';
 import MainHeader from '../components/MainHeader/MainHeader';
 import MainFooter from '../components/MainFooter/MainFooter';
 import useRoutes from '../components/MainPage/Routes';
@@ -16,7 +16,9 @@ function App() {
             <div className="App">
                 <div className="app-wrapper">
                     <MainHeader />
-                    {routes}
+                    <div className="main-page">
+                        {routes}
+                    </div>
                     <MainFooter />
                 </div>
             </div>

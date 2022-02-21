@@ -1,0 +1,21 @@
+.main-navbar__ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    .main-navbar__li {
+        padding: 0 20px;
+        transition: 0.3s ease-in;
+        & a{
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            transition: 0.3s ease-in;
+            &:hover {
+                color: #0000ff;                
+            }
+        }
+        &:hover {            
+            transform: scale(1.1);
+        }
+    }
+}
