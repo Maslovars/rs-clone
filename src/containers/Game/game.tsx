@@ -16,6 +16,7 @@ import { GameConfig } from './stateGame';
 import { coinSpent, runeBuy } from '../../reducers/coin';
 import { itemMerge, itemProduce } from '../../reducers/item';
 import { monsterDie } from '../../reducers/monster';
+import music from '../../assets/music/the_path_of_the_goblin_king.mp3';
 import './game.scss';
 
 function Game() {
@@ -24,6 +25,16 @@ function Game() {
     const [bgm, setBgm] = useState<boolean>(true);
     const [onboardingStep, setOnboardingStep] = useState<number>(GameConfig.onboardingStep);
     const [level, setLevel] = useState<number>(GameConfig.level);
+
+    // const { items } = useItemsSelectors();
+
+    /* useEffect(() => {
+        if (items[items.length - 1] !== null) {
+            dispatch(itemReset());
+            dispatch(openPopup(POPUP_GAME_OVER));
+            setOnboardingStep(0);
+        }
+    }, [items, level]); */
 
     function getSettings() {
         return (
@@ -154,7 +165,7 @@ function Game() {
     }
     return (
         <div className="game-container">
-            <audio preload="auto" autoPlay loop muted={!bgm} src="../../assets/music/the_path_of_the_goblin_king.mp3" />
+            <audio preload="auto" autoPlay loop muted={!bgm} src={music} />
             <div className={`screen ${popup.open ? 'popupActive' : ''}`}>
                 <IonPhaser game={GameConfig.phaserGame} initialize={GameConfig.bgm} />
                 {renderContent()}

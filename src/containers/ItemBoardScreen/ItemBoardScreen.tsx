@@ -24,7 +24,6 @@ function ItemBoardScreen(props: ItemBoardScreenPropsType) {
         if (!start) {
             return;
         }
-
         setStarted(true);
         setInterval(() => {
             dispatch(itemProduce([ITEM_LEVEL_MAP[1]]));
@@ -48,9 +47,7 @@ function ItemBoardScreen(props: ItemBoardScreenPropsType) {
                 if (previousItem.damage === item.damage) {
                     onMergeItem(clickedIndex, index);
                 }
-
                 setClickedIndex(null);
-
                 return;
             }
         }

@@ -15,6 +15,7 @@ export const POPUP_SCREEN_FAQ = 'POPUP_SCREEN_FAQ';
 export const POPUP_SCREEN_ABOUT = 'POPUP_SCREEN_ABOUT';
 export const POPUP_SCREEN_SHOP = 'POPUP_SCREEN_SHOP';
 export const POPUP_SCREEN_SETTINGS = 'POPUP_SCREEN_SETTINGS';
+export const POPUP_GAME_OVER = 'POPUP_GAME_OVER';
 
 const monstersList = [
     'Fallen_Angels_1',
