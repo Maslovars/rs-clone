@@ -1,0 +1,19 @@
+.main-header {         
+    background-color: #4f921b;    
+    .main-header__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;  
+        max-width: 1200px;
+        padding: 0 15px;
+        margin: 0 auto;
+        height: 100%;
+        .main-header__logo {
+            & img {
+                height: 80px;
+                padding: 10px;
+            }
+        }
+      }
+    
+}
