@@ -15,7 +15,7 @@ export const rootReducer = combineReducers({
     monster: monsterReducer,
     sheet: sheetReducer,
     rune: runeReducer,
-    app: appReducer,
+    app: appReducer
 });
 
 export type AppStateType = ReturnType<typeof rootReducer>;

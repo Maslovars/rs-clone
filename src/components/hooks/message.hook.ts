@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import "materialize-css/dist/js/materialize.min.js";
+import 'materialize-css/dist/js/materialize.min.js';
 
 declare global {
     interface Window {
@@ -9,9 +9,10 @@ declare global {
 
 const useMessage = () => {
     return useCallback((text) => {
-        if (window.M && text)
+        if (window.M && text) {
             window.M.toast({ html: text });
-    }, [])
-}
+        }
+    }, []);
+};
 
 export default useMessage;

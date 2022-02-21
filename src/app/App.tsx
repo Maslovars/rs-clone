@@ -12,13 +12,11 @@ function App() {
     const isAuthenticated = !!token;
     const routes = useRoutes(isAuthenticated);
     return (
-        <AuthContext.Provider value={{ login, logout, token, userId, isAuthenticated }} >
+        <AuthContext.Provider value={{ login, logout, token, userId, isAuthenticated }}>
             <div className="App">
                 <div className="app-wrapper">
                     <MainHeader />
-                    <div className="main-page">
-                        {routes}
-                    </div>
+                    <div className="main-page">{routes}</div>
                     <MainFooter />
                 </div>
             </div>

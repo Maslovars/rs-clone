@@ -6,9 +6,7 @@ import useMessage from '../hooks/message.hook';
 import loginBtn from '../../assets/connectionForm/login-btn.png';
 import registerBtn from '../../assets/connectionForm/register-btn.png';
 
-
-
-const ConnectionForm = () => {
+function ConnectionForm() {
     const { load, error, request, clearError } = useHttp();
     const message = useMessage();
     const auth = useContext(AuthContext);
@@ -23,45 +21,49 @@ const ConnectionForm = () => {
     }, [error, message, clearError]);
 
     const changeHandler = (e: any) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
-    }
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
 
     const registerHandler = async () => {
         try {
             const data = await request('api/auth/register', 'POST', { ...form });
             message(data.message);
-        } catch (err) { }
-    }
+        } catch (err) {}
+    };
 
     const loginHandler = async () => {
         try {
             const data = await request('api/auth/login', 'POST', { ...form });
             auth.login(data.token, data.userId);
-        } catch (err) { }
-    }
+        } catch (err) {}
+    };
 
     return (
         <div className="connection-form">
             <div className="connection-form__inputs">
                 <div className="connection-form__inputs-wrapper">
-                    <label className="connection-form__label" htmlFor="userName">Name</label>
+                    <label className="connection-form__label" htmlFor="userName">
+                        Name
+                    </label>
                     <input
                         placeholder="Enter your name"
                         id="userName"
                         type="text"
                         className="browser-default connection-form__input"
-                        name='userName'
+                        name="userName"
                         onChange={changeHandler}
                     />
                 </div>
                 <div className="connection-form__inputs-wrapper">
-                    <label className="connection-form__label" htmlFor="password">Password</label>
+                    <label className="connection-form__label" htmlFor="password">
+                        Password
+                    </label>
                     <input
                         placeholder="Enter your password"
                         id="password"
                         type="password"
                         className="browser-default connection-form__input"
-                        name='password'
+                        name="password"
                         onChange={changeHandler}
                     />
                 </div>
@@ -75,7 +77,7 @@ const ConnectionForm = () => {
                 </button>
             </div>
         </div>
-    )
-};
+    );
+}
 
 export default ConnectionForm;
