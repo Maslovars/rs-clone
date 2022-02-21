@@ -27,6 +27,12 @@ export const itemMerge = (fromIndex: number, toIndex: number) => {
     } as const;
 };
 
+/* export const itemReset = () => {
+    return {
+        type: 'ITEM_RESET'
+    } as const;
+}; */
+
 export const runeBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
@@ -80,6 +86,13 @@ export const itemReducer = (state: InitialItemType = initialStateItem, action: A
                 dps: calculateDPS(clone)
             };
         }
+
+        /* case 'ITEM_RESET': {
+            return {
+                ...state,
+                items: []
+            };
+        } */
 
         case ITEM_MERGE: {
             const future = [...state.items];

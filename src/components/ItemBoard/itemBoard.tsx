@@ -26,7 +26,8 @@ function ItemBoard(props: ItemBoardPropsType) {
             return;
         }
         setStarted(true);
-        setInterval(() => {
+
+        const id = setInterval(() => {
             if (!start) {
                 return;
             }
@@ -43,6 +44,10 @@ function ItemBoard(props: ItemBoardPropsType) {
                 setHighlight(false);
             }, COIN_RECEIVE_SHOW_DURATION);
         }, 2500);
+
+        if (items[items.length - 1] !== null) {
+            clearInterval(id);
+        }
     }, [started, start, items]);
 
     return (

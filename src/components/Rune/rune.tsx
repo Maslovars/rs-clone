@@ -23,7 +23,7 @@ function Rune(props: RunePropsType) {
         current = `+${(rune.multiplier * rune.owned).toFixed()}`;
     }
     return (
-        <div className={`com-Rune ${canBuy || ''}`}>
+        <div className={`com-Rune ${canBuy ? 'canBuy' : ''}`}>
             <img src={rune.icon} alt="rune-icon" />
             <div className="rune-upgrade-box">
                 <h1>{rune.name}</h1>
