@@ -52,6 +52,7 @@ function MonstersScreen(props: MonstersScreenPropsType) {
         start,
         setStarted
     );
+
     return <Monster isCriticalHit={isCriticalHit} receivedDamage={receivedDamage.current} {...monster} />;
 }
 
