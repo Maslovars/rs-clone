@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { COIN_RECEIVE_SHOW_DURATION, ItemType } from '../../constants/items';
 import Item from './Item/item';
-import './itemBoard.scss';
 import { coinReceived } from '../../reducers/coin';
+import { COIN_RECEIVE_SHOW_DURATION, ItemType } from '../../constants/items';
+import './itemBoard.scss';
 
 type ItemBoardPropsType = {
     start: boolean;
@@ -16,8 +16,6 @@ function ItemBoard(props: ItemBoardPropsType) {
     const { items, clickedIndex, onClick, start } = props;
     const [highlight, setHighlight] = useState<boolean>(false);
     const [started, setStarted] = useState<boolean>(false);
-    // eslint-disable-next-line no-undef
-    const [intervalId, setIntervalId] = useState<NodeJS.Timer | null>(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,7 +26,7 @@ function ItemBoard(props: ItemBoardPropsType) {
             return;
         }
         setStarted(true);
-        const id = setInterval(() => {
+        setInterval(() => {
             if (!start) {
                 return;
             }
@@ -45,20 +43,11 @@ function ItemBoard(props: ItemBoardPropsType) {
                 setHighlight(false);
             }, COIN_RECEIVE_SHOW_DURATION);
         }, 2500);
-        setIntervalId(id);
     }, [started, start, items]);
-
-    // eslint-disable-next-line consistent-return
-    useEffect(() => {
-        if (intervalId) {
-            return () => clearInterval(intervalId);
-        }
-    }, []);
 
     return (
         <div className="com-ItemBoard">
             {items.map((item, i) => (
-                // eslint-disable-next-line max-len
                 <Item key={i.toString()} item={item} highlight={highlight} clickedIndex={clickedIndex} onClick={onClick} i={i} />
             ))}
         </div>

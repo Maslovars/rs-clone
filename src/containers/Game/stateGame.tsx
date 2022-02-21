@@ -1,19 +1,18 @@
 import Phaser from 'phaser';
+import { STARTING_LEVEL } from '../../constants';
 
 import bg1 from '../../assets/backgrounds/game_background_1.png';
 import bg2 from '../../assets/backgrounds/game_background_2.png';
 import bg3 from '../../assets/backgrounds/game_background_3.png';
 import bg4 from '../../assets/backgrounds/game_background_4.png';
-import { STARTING_LEVEL } from '../../constants';
 
 export class Scene extends Phaser.Scene {
     constructor() {
         super({
-            key: 'Scene',
+            key: 'Scene'
         });
     }
 
-    // eslint-disable-next-line class-methods-use-this
     init() {}
 
     preload() {
@@ -28,7 +27,6 @@ export class Scene extends Phaser.Scene {
         bg.setOrigin(0, 0);
 
         this.game.events.on('onMonsterDie', (level: number) => {
-            // todo fix this bad code later
             if (level >= 6 && level < 11) {
                 bg = this.add.image(0, 0, 'bg1');
                 bg.setOrigin(0, 0);
@@ -52,10 +50,7 @@ export class Scene extends Phaser.Scene {
         });
     }
 
-    // eslint-disable-next-line class-methods-use-this
     update() {}
-
-    // eslint-disable-next-line class-methods-use-this
 }
 
 export const GameConfig = {
@@ -67,7 +62,7 @@ export const GameConfig = {
         height: 768,
         width: 1024,
         type: Phaser.AUTO,
-        scene: [Scene],
+        scene: [Scene]
     },
-    onboardingStep: 0,
+    onboardingStep: 0
 };

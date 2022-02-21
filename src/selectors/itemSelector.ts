@@ -10,7 +10,7 @@ interface ItemsSelector {
 
 const ItemsSelectors = (state: AppStateType) => {
     return {
-        items: state.item.items,
+        items: state.item.items
     };
 };
 

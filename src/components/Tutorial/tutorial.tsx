@@ -37,10 +37,7 @@ const tutorialContent = (step: number) => {
 
                     <p>This is the Weapon Board.</p>
                     <br />
-                    <p>
-                        Every weapon generates coin and deals damage to monsters
-                        automatically.
-                    </p>
+                    <p>Every weapon generates coin and deals damage to monsters automatically.</p>
                     <br />
                     <p>I gave you two Wooden Swords.</p>
                 </>
@@ -58,7 +55,7 @@ const tutorialContent = (step: number) => {
                     </p>
                     <br />
                     <p>
-                        <span className="yellow-number">Yellow number:</span>{' '}
+                        <span className="yellow-number">Yellow number: </span>
                         how much coin it generates
                     </p>
                 </>
@@ -68,15 +65,9 @@ const tutorialContent = (step: number) => {
             return (
                 <>
                     <h1>←</h1>
-                    <p>
-                        You can click on Weapons and combine them to get more
-                        powerful versions.
-                    </p>
+                    <p>You can click on Weapons and combine them to get more powerful versions.</p>
                     <br />
-                    <p>
-                        Try to click on both Weapons to make a more powerful
-                        version.
-                    </p>
+                    <p>Try to click on both Weapons to make a more powerful version.</p>
                     <br />
                     <p>I am waiting...</p>
                 </>
@@ -86,10 +77,7 @@ const tutorialContent = (step: number) => {
             return (
                 <>
                     <h1>←</h1>
-                    <p>
-                        Great, you made a Steel Sword! It is more powerful so
-                        Weapon`s Coin income and Damage is increased to 2.
-                    </p>
+                    <p>Great, you made a Steel Sword! It is more powerful so Weapon`s Coin income and Damage is increased to 2.</p>
                     <br />
                     <p>You can combine only same tier of Weapons.</p>
                 </>
@@ -99,15 +87,9 @@ const tutorialContent = (step: number) => {
             return (
                 <>
                     <h1>←</h1>
-                    <p>
-                        Every few seconds you will get new weapons
-                        automatically.
-                    </p>
+                    <p>Every few seconds you will get new weapons automatically.</p>
                     <br />
-                    <p>
-                        Combine them and get stronger. Spend your coins on Runes
-                        to get even stronger!
-                    </p>
+                    <p>Combine them and get stronger. Spend your coins on Runes to get even stronger!</p>
                 </>
             );
 

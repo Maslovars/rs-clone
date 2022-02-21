@@ -1,9 +1,4 @@
-import {
-    AUTH_LOGIN_FAIL,
-    AUTH_LOGIN_REQUEST,
-    AUTH_LOGIN_SUCCESS,
-    AUTH_LOGOUT_SUCCESS,
-} from '../constants';
+import { AUTH_LOGIN_FAIL, AUTH_LOGIN_REQUEST, AUTH_LOGIN_SUCCESS, AUTH_LOGOUT_SUCCESS } from '../constants';
 
 export type InitialAuthType = {
     user: object;
@@ -18,7 +13,7 @@ export type InitialAuthType = {
 
 export const authLoginRequest = () => {
     return {
-        type: AUTH_LOGIN_REQUEST,
+        type: AUTH_LOGIN_REQUEST
     } as const;
 };
 
@@ -26,8 +21,8 @@ export const authLoginSuccess = (logIn: boolean) => {
     return {
         type: AUTH_LOGIN_SUCCESS,
         payload: {
-            logIn,
-        },
+            logIn
+        }
     };
 };
 
@@ -35,8 +30,8 @@ export const authLoginFail = (error: string) => {
     return {
         type: AUTH_LOGIN_FAIL,
         payload: {
-            error,
-        },
+            error
+        }
     };
 };
 
@@ -44,8 +39,8 @@ export const authLogoutSuccess = (logIn: boolean) => {
     return {
         type: AUTH_LOGOUT_SUCCESS,
         payload: {
-            logIn,
-        },
+            logIn
+        }
     };
 };
 
@@ -63,20 +58,16 @@ const initialStateAuth: InitialAuthType = {
     token: '',
     loggingIn: false,
     loggedIn: false,
-    loginFailed: false,
+    loginFailed: false
 };
 
-export const authReducer = (
-    // eslint-disable-next-line default-param-last
-    state: InitialAuthType = initialStateAuth,
-    action: ActionsAuthType,
-): InitialAuthType => {
+export const authReducer = (state: InitialAuthType = initialStateAuth, action: ActionsAuthType): InitialAuthType => {
     switch (action.type) {
         case AUTH_LOGIN_REQUEST: {
             return {
                 ...state,
                 loggingIn: true,
-                loginFailed: false,
+                loginFailed: false
             };
         }
 
@@ -86,7 +77,7 @@ export const authReducer = (
                 ...action.payload,
                 loggingIn: false,
                 loginFailed: false,
-                loggedIn: true,
+                loggedIn: true
             };
         }
 
@@ -95,13 +86,13 @@ export const authReducer = (
                 ...state,
                 ...action.payload,
                 loggingIn: false,
-                loggedIn: false,
+                loggedIn: false
             };
         }
 
         case AUTH_LOGOUT_SUCCESS: {
             return {
-                ...initialStateAuth,
+                ...initialStateAuth
             };
         }
 

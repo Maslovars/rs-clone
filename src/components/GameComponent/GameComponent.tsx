@@ -16,14 +16,13 @@ function GameComponent() {
         });
     }
 
-    // вопросы по юз эффекту
     useEffect(() => {
         const preloads = async () => {
             await preload();
             setLoad(true);
         };
         preloads();
-    }, []);
+    }, [load]);
 
     function preloadAll() {
         return (

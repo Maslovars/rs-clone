@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IonPhaser } from '@ion-phaser/react';
 import { AppStateType } from '../../app/redux-store';
-import {
-    POPUP_SCREEN_ABOUT,
-    POPUP_SCREEN_FAQ,
-    POPUP_SCREEN_SETTINGS,
-    POPUP_SCREEN_SHOP,
-    POPUP_SCREEN_UPGRADE,
-} from '../../constants';
+import { POPUP_SCREEN_ABOUT, POPUP_SCREEN_FAQ, POPUP_SCREEN_SETTINGS, POPUP_SCREEN_SHOP, POPUP_SCREEN_UPGRADE } from '../../constants';
 import RuneScreen from '../RuneScreen/runeScreen';
 import { closePopup, InitialPopupType } from '../../reducers/popup';
 import ItemBoardScreen from '../ItemBoardScreen/ItemBoardScreen';
@@ -19,20 +13,16 @@ import FooterGame from '../FooterGame/footerGame';
 import Tutorial from '../../components/Tutorial/tutorial';
 import Popup from '../../components/Popup/popup';
 import { GameConfig } from './stateGame';
-import './game.scss';
 import { coinSpent, runeBuy } from '../../reducers/coin';
 import { itemMerge, itemProduce } from '../../reducers/item';
-import { monsterDie, monsterUpdate } from '../../reducers/monster';
+import { monsterDie } from '../../reducers/monster';
+import './game.scss';
 
 function Game() {
-    const popup = useSelector<AppStateType, InitialPopupType>(
-        (state) => state.popup,
-    );
+    const popup = useSelector<AppStateType, InitialPopupType>((state) => state.popup);
     const dispatch = useDispatch();
     const [bgm, setBgm] = useState<boolean>(true);
-    const [onboardingStep, setOnboardingStep] = useState<number>(
-        GameConfig.onboardingStep,
-    );
+    const [onboardingStep, setOnboardingStep] = useState<number>(GameConfig.onboardingStep);
     const [level, setLevel] = useState<number>(GameConfig.level);
 
     function getSettings() {
@@ -70,25 +60,13 @@ function Game() {
                         <h1>How to Play</h1>
                         <br />
                         <ul>
-                            <li>
-                                1. Click and match weapons to get one level
-                                higher.
-                            </li>
+                            <li>1. Click and match weapons to get one level higher.</li>
                             <br />
-                            <li>
-                                2. Every weapon gives you coins and deals damage
-                                to monsters.
-                            </li>
+                            <li>2. Every weapon gives you coins and deals damage to monsters.</li>
                             <br />
-                            <li>
-                                3. Upgrade your runes to gain even more coins
-                                and damage.
-                            </li>
+                            <li>3. Upgrade your runes to gain even more coins and damage.</li>
                             <br />
-                            <li>
-                                4. That`&apos;`s all. How many levels can you
-                                beat?
-                            </li>
+                            <li>4. That`&apos;`s all. How many levels can you beat?</li>
                         </ul>
                     </>
                 );
@@ -144,18 +122,12 @@ function Game() {
                 onMonsterDie={(level, monster) => {
                     setLevel(level);
                     // @ts-ignore
-                    GameConfig.phaserGame.instance.events.emit(
-                        'onMonsterDie',
-                        level,
-                    );
+                    GameConfig.phaserGame.instance.events.emit('onMonsterDie', level);
                     dispatch(monsterDie(level));
 
                     if (monster.loot) {
                         dispatch(itemProduce([ITEM_LEVEL_MAP[1]]));
                     }
-                }}
-                onMonsterHit={(monster) => {
-                    dispatch(monsterUpdate(monster));
                 }}
             />
         );
@@ -176,27 +148,15 @@ function Game() {
             if (onboardingStep <= 1) {
                 return [header, tutorial];
             }
-
             return [header, itemBoard, tutorial];
         }
-
         return [header, itemBoard, monsters, footer];
     }
     return (
         <div className="game-container">
-            {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-            <audio
-                preload="auto"
-                autoPlay
-                loop
-                muted={!bgm}
-                src="../../assets/music/the_path_of_the_goblin_king.mp3"
-            />
+            <audio preload="auto" autoPlay loop muted={!bgm} src="../../assets/music/the_path_of_the_goblin_king.mp3" />
             <div className={`screen ${popup.open ? 'popupActive' : ''}`}>
-                <IonPhaser
-                    game={GameConfig.phaserGame}
-                    initialize={GameConfig.bgm}
-                />
+                <IonPhaser game={GameConfig.phaserGame} initialize={GameConfig.bgm} />
                 {renderContent()}
             </div>
             {popup.open && (

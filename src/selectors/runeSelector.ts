@@ -8,7 +8,7 @@ interface RunesSelector {
 
 const RuneSelector = (state: AppStateType) => {
     return {
-        runes: state.rune.runes,
+        runes: state.rune.runes
     };
 };
 

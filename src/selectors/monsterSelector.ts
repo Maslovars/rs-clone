@@ -8,7 +8,7 @@ interface MonsterSelectors {
 
 const MonsterSelector = (state: AppStateType) => {
     return {
-        monster: state.monster.monster,
+        monster: state.monster.monster
     };
 };
 

@@ -7,7 +7,7 @@ interface CoinSelector {
 
 const CoinsSelector = (state: AppStateType) => {
     return {
-        coins: state.coin.coins,
+        coins: state.coin.coins
     };
 };
 

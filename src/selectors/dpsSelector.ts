@@ -7,7 +7,7 @@ interface DpsSelector {
 
 const DpsSelectors = (state: AppStateType) => {
     return {
-        dps: state.item.dps,
+        dps: state.item.dps
     };
 };
 
