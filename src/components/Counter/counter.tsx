@@ -10,7 +10,7 @@ type CounterPropsType = {
 const defaultProps = {
     coins: 0,
     dps: 0,
-    level: 0,
+    level: 0
 };
 
 function Counter(props: CounterPropsType) {

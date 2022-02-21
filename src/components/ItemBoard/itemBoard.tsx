@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { ItemType } from '../../constants/items';
+import { useDispatch } from 'react-redux';
 import Item from './Item/item';
+import { coinReceived } from '../../reducers/coin';
+import { COIN_RECEIVE_SHOW_DURATION, ItemType } from '../../constants/items';
 import './itemBoard.scss';
-
-export const COIN_RECEIVE_SHOW_DURATION = 500;
 
 type ItemBoardPropsType = {
     start: boolean;
     items: (ItemType | null)[];
     clickedIndex: number | null;
     onClick: (item: ItemType | null, index: number) => void;
-    onReceiveCoin: (coins: number) => void;
 };
 
 function ItemBoard(props: ItemBoardPropsType) {
-    const { items, clickedIndex, onClick, start, onReceiveCoin } = props;
+    const { items, clickedIndex, onClick, start } = props;
     const [highlight, setHighlight] = useState<boolean>(false);
-    const [started] = useState<boolean>(true);
+    const [started, setStarted] = useState<boolean>(false);
+    const dispatch = useDispatch();
 
-    function listen() {
-        return setInterval(() => {
+    useEffect(() => {
+        if (started) {
+            return;
+        }
+        if (!start) {
+            return;
+        }
+        setStarted(true);
+        setInterval(() => {
             if (!start) {
                 return;
             }
@@ -31,36 +38,17 @@ function ItemBoard(props: ItemBoardPropsType) {
                 }
                 return acc;
             }, 0);
-
-            onReceiveCoin(coins);
-
+            dispatch(coinReceived(coins));
             setTimeout(() => {
                 setHighlight(false);
             }, COIN_RECEIVE_SHOW_DURATION);
         }, 2500);
-    }
-
-    useEffect(() => {
-        if (started) {
-            return;
-        }
-        if (!start) {
-            return;
-        }
-        const id = listen();
-        clearInterval(id);
-    }, []);
+    }, [started, start, items]);
 
     return (
         <div className="com-ItemBoard">
             {items.map((item, i) => (
-                <Item
-                    i={i}
-                    item={item}
-                    highlight={highlight}
-                    clickedIndex={clickedIndex}
-                    onClick={onClick}
-                />
+                <Item key={i.toString()} item={item} highlight={highlight} clickedIndex={clickedIndex} onClick={onClick} i={i} />
             ))}
         </div>
     );

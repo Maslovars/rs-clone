@@ -13,15 +13,7 @@ type ItemPropsType = {
 function Item(props: ItemPropsType) {
     const { item, onClick, i, clickedIndex, highlight } = props;
     if (!item) {
-        return (
-            <div
-                aria-label="button"
-                tabIndex={0}
-                role="button"
-                onClick={() => onClick && onClick(null, i)}
-                className="item"
-            />
-        );
+        return <div aria-label="button" tabIndex={0} role="button" onClick={() => onClick && onClick(null, i)} className="item" />;
     }
 
     return (
@@ -30,15 +22,13 @@ function Item(props: ItemPropsType) {
             tabIndex={0}
             role="button"
             onClick={() => onClick && onClick(item, i)}
-            className={`item ${clickedIndex === i ? 'clicked' : ''} ${
-                highlight ? 'highlight' : ''
-            }`}
+            className={`item ${clickedIndex === i ? 'clicked' : ''} ${highlight ? 'highlight' : ''}`}
         >
             <div className="item-stats">
                 <div className="item-damage">{item.damage}</div>
                 <div className="item-coin">{item.coins}</div>
             </div>
-            {/*  <img src={props.item.icon} /> */}
+            <img src={item.icon} alt="weapons" />
         </div>
     );
 }

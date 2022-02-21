@@ -1,86 +1,58 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { AppStateType } from '../../app/redux-store';
-import { getRandomIntInclusive } from '../../helpers/random';
+import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { GAME_SPEED_MULTIPLIER, objMonsterType } from '../../constants';
 import Monster from '../../components/Monster/monster';
+import useDpsSelectors from '../../selectors/dpsSelector';
+import useMonsterSelectors from '../../selectors/monsterSelector';
+import useSheetsSelectors from '../../selectors/sheetSelector';
+import getRandomIntInclusive from '../../helpers/random';
+import { monsterUpdate } from '../../reducers/monster';
+import useInterval from '../../helpers/useInterval';
 
 type MonstersScreenPropsType = {
-    onMonsterHit: (monster: { [key: number]: objMonsterType }) => void;
-    onMonsterDie: (
-        level: number,
-        monster: { [key: number]: objMonsterType },
-    ) => void;
+    onMonsterDie: (level: number, monster: objMonsterType) => void;
     start: boolean;
     level: number;
 };
 
 function MonstersScreen(props: MonstersScreenPropsType) {
-    const dps = useSelector<AppStateType, number>((state) => state.item.dps);
-    const monster = useSelector<
-        AppStateType,
-        { [key: number]: objMonsterType }
-    >((state) => state.monster.monster);
-    const critRate = useSelector<AppStateType, number>(
-        (state) => state.sheet.critRate,
-    );
-    const critDamage = useSelector<AppStateType, number>(
-        (state) => state.sheet.critDamage,
-    );
+    const dispatch = useDispatch();
+    const { dps } = useDpsSelectors();
+    const { monster } = useMonsterSelectors();
+    const { critRate } = useSheetsSelectors();
+    const { critDamage } = useSheetsSelectors();
 
-    const { start, onMonsterHit, onMonsterDie, level } = props;
-    let receivedDamage: number | undefined;
+    const { start, onMonsterDie, level } = props;
 
     const [started, setStarted] = useState<boolean>(false);
+    const receivedDamage = useRef(0);
     const [isCriticalHit, setIsCriticalHit] = useState<boolean>(false);
+    const [delay] = useState<number>(1000);
 
-    function listen() {
-        setStarted(true);
-        setInterval(() => {
-            const clone = {
-                ...monster,
-            };
-
+    useInterval(
+        () => {
             const critRoll = getRandomIntInclusive(0, 100);
-
             if (critRoll <= critRate) {
                 setIsCriticalHit(true);
-                receivedDamage = Math.round(
-                    (dps / GAME_SPEED_MULTIPLIER) * critDamage,
-                );
+                receivedDamage.current = Math.round((dps / GAME_SPEED_MULTIPLIER) * critDamage);
             } else {
                 setIsCriticalHit(false);
-                receivedDamage = Math.round(dps / GAME_SPEED_MULTIPLIER);
+                receivedDamage.current = Math.round(dps / GAME_SPEED_MULTIPLIER);
             }
-
-            clone[level].currentHealth -= receivedDamage;
-
-            if (clone[level].currentHealth <= 0) {
-                onMonsterDie(level + 1, clone);
+            monster.currentHealth -= receivedDamage.current;
+            if (monster.currentHealth <= 0) {
+                onMonsterDie(level + 1, monster);
+                setStarted(false);
                 return;
             }
-
-            onMonsterHit(clone);
-        }, 1000);
-    }
-
-    useEffect(() => {
-        if (started) {
-            return;
-        }
-        if (!start) {
-            return;
-        }
-        listen();
-    }, []);
-
-    return (
-        <Monster
-            isCriticalHit={isCriticalHit}
-            receivedDamage={receivedDamage}
-            {...monster[level]}
-        />
+            dispatch(monsterUpdate(monster));
+        },
+        delay,
+        started,
+        start,
+        setStarted
     );
+    return <Monster isCriticalHit={isCriticalHit} receivedDamage={receivedDamage.current} {...monster} />;
 }
 
 export default MonstersScreen;

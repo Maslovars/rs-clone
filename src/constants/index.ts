@@ -37,7 +37,7 @@ const monstersList = [
     'Troll_3',
     'Wraith_1',
     'Wraith_2',
-    'Wraith_3',
+    'Wraith_3'
 ];
 
 export type objMonsterType = {
@@ -55,7 +55,7 @@ const generateMonstersMap = () => {
     [...new Array(100)].forEach((k, i) => {
         const level = (i + 1) as number;
         let health = Math.round(10 * level * (1 + level / 2));
-        let monster =            monstersList[Math.floor(Math.random() * monstersList.length)];
+        let monster = monstersList[Math.floor(Math.random() * monstersList.length)];
 
         if (level === 1) {
             monster = 'Troll_3';
@@ -85,9 +85,9 @@ const generateMonstersMap = () => {
             name: monster,
             health,
             currentHealth: health,
-            top: 225,
+            top: 300,
             right: 20,
-            loot: i % 3 === 1,
+            loot: i % 3 === 1
         };
     });
     return obj;
@@ -101,25 +101,16 @@ export const MONSTERS_MAP = generateMonstersMap();
 export const STARTING_LEVEL = 1;
 
 // Game ----------------------------
-
-export const BOARD_SIZE = 15;
 export const GAME_SPEED_MULTIPLIER = 1;
 
 // App ----------------------------
-
-export const APP_START = 'APP_START';
 export const APP_LOAD_SUCCESS = 'APP_LOAD_SUCCESS';
 export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 export const LANGUAGE_EN = 'en-GB';
 export const LANGUAGE_DEFAULT = LANGUAGE_EN;
-export const MISSING_TRANSLATION_MESSAGE = 'Missing Translation';
 
 // Auth ----------------------------
-
 export const AUTH_LOGIN_REQUEST = 'AUTH_LOGIN_REQUEST';
 export const AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS';
 export const AUTH_LOGIN_FAIL = 'AUTH_LOGIN_FAIL';
-
-export const AUTH_LOGOUT_REQUEST = 'AUTH_LOGOUT_REQUEST';
 export const AUTH_LOGOUT_SUCCESS = 'AUTH_LOGOUT_SUCCESS';
-export const AUTH_LOGOUT_FAIL = 'AUTH_LOGOUT_FAIL';

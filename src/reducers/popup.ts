@@ -8,42 +8,36 @@ export const openPopup = (open: string | null) => {
     return {
         type: POPUP_OPEN,
         payload: {
-            open,
-        },
+            open
+        }
     } as const;
 };
 
 export const closePopup = () => {
     return {
-        type: POPUP_CLOSE,
+        type: POPUP_CLOSE
     } as const;
 };
 
-export type ActionsPopupType =
-    | ReturnType<typeof openPopup>
-    | ReturnType<typeof closePopup>;
+export type ActionsPopupType = ReturnType<typeof openPopup> | ReturnType<typeof closePopup>;
 
 const initialStatePopup: InitialPopupType = {
-    open: null,
+    open: null
 };
 
-export const popupReducer = (
-    // eslint-disable-next-line default-param-last
-    state: InitialPopupType = initialStatePopup,
-    action: ActionsPopupType,
-): InitialPopupType => {
+export const popupReducer = (state: InitialPopupType = initialStatePopup, action: ActionsPopupType): InitialPopupType => {
     switch (action.type) {
         case POPUP_OPEN: {
             return {
                 ...state,
-                open: action.payload.open,
+                open: action.payload.open
             };
         }
 
         case POPUP_CLOSE: {
             return {
                 ...state,
-                open: null,
+                open: null
             };
         }
 
