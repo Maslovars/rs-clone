@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './ConnectionForm.scss';
-import { AuthContext } from '../context/AuthContext';
 import useHttp from '../hooks/http.hook';
 import useMessage from '../hooks/message.hook';
 import loginBtn from '../../assets/connectionForm/login-btn.png';
 import registerBtn from '../../assets/connectionForm/register-btn.png';
+import AuthContext from '../context/AuthContext';
 
 function ConnectionForm() {
     const { load, error, request, clearError } = useHttp();
@@ -69,10 +69,10 @@ function ConnectionForm() {
                 </div>
             </div>
             <div className="connection-form__btns">
-                <button className="connection-form__btn" onClick={loginHandler} disabled={load}>
+                <button className="connection-form__btn" onClick={loginHandler} disabled={load} type="button">
                     <img src={loginBtn} alt="login-button" />
                 </button>
-                <button className="connection-form__btn" onClick={registerHandler} disabled={load}>
+                <button className="connection-form__btn" onClick={registerHandler} disabled={load} type="button">
                     <img src={registerBtn} alt="register-button" />
                 </button>
             </div>

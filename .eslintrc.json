@@ -95,7 +95,14 @@
           "endOfLine": "auto",
           "tabWidth": 4
         }
-      ]
+      ],
+      "extends": "off",
+      "no-empty": "off",
+      "jsx-a11y/label-has-associated-control": ["error", {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }]
     },
     "settings": {
         "import/resolver": {

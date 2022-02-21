@@ -4,7 +4,7 @@ import './App.scss';
 import MainHeader from '../components/MainHeader/MainHeader';
 import MainFooter from '../components/MainFooter/MainFooter';
 import useRoutes from '../components/MainPage/Routes';
-import { AuthContext } from '../components/context/AuthContext';
+import AuthContext from '../components/context/AuthContext';
 import useAuth from '../components/hooks/auth.hook';
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
     const isAuthenticated = !!token;
     const routes = useRoutes(isAuthenticated);
     return (
+        // eslint-disable-next-line react/jsx-no-constructed-context-values
         <AuthContext.Provider value={{ login, logout, token, userId, isAuthenticated }}>
             <div className="App">
                 <div className="app-wrapper">
