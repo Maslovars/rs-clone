@@ -3,6 +3,8 @@ import './ConnectionForm.scss';
 import { AuthContext } from '../context/AuthContext';
 import useHttp from '../hooks/http.hook';
 import useMessage from '../hooks/message.hook';
+import loginBtn from '../../assets/connectionForm/login-btn.png';
+import registerBtn from '../../assets/connectionForm/register-btn.png';
 
 
 
@@ -41,28 +43,36 @@ const ConnectionForm = () => {
     return (
         <div className="connection-form">
             <div className="connection-form__inputs">
-                <label htmlFor="userName">Name</label>
-                <input
-                    placeholder="Enter your name"
-                    id="userName"
-                    type="text"
-                    className="browser-default connection-form__input"
-                    name='userName'
-                    onChange={changeHandler}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                    placeholder="Enter your password"
-                    id="password"
-                    type="password"
-                    className="browser-default connection-form__input"
-                    name='password'
-                    onChange={changeHandler}
-                />
+                <div className="connection-form__inputs-wrapper">
+                    <label className="connection-form__label" htmlFor="userName">Name</label>
+                    <input
+                        placeholder="Enter your name"
+                        id="userName"
+                        type="text"
+                        className="browser-default connection-form__input"
+                        name='userName'
+                        onChange={changeHandler}
+                    />
+                </div>
+                <div className="connection-form__inputs-wrapper">
+                    <label className="connection-form__label" htmlFor="password">Password</label>
+                    <input
+                        placeholder="Enter your password"
+                        id="password"
+                        type="password"
+                        className="browser-default connection-form__input"
+                        name='password'
+                        onChange={changeHandler}
+                    />
+                </div>
             </div>
-            <div>
-                <button onClick={loginHandler} disabled={load}>login</button>
-                <button onClick={registerHandler} disabled={load}>register</button>
+            <div className="connection-form__btns">
+                <button className="connection-form__btn" onClick={loginHandler} disabled={load}>
+                    <img src={loginBtn} alt="login-button" />
+                </button>
+                <button className="connection-form__btn" onClick={registerHandler} disabled={load}>
+                    <img src={registerBtn} alt="register-button" />
+                </button>
             </div>
         </div>
     )
