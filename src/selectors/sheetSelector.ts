@@ -9,7 +9,7 @@ interface SheetSelector {
 const SheetsSelector = (state: AppStateType) => {
     return {
         critRate: state.sheet.critRate,
-        critDamage: state.sheet.critDamage,
+        critDamage: state.sheet.critDamage
     };
 };
 

@@ -17,23 +17,10 @@ export const rootReducer = combineReducers({
     sheet: sheetReducer,
     rune: runeReducer,
     app: appReducer,
-    auth: authReducer,
+    auth: authReducer
 });
 
 export type AppStateType = ReturnType<typeof rootReducer>;
-
-// export type GetAppStateType = () => AppStateType;
-
-// type AppActionsType =
-// | ActionsCoinType
-// | ActionsItemType
-// | ActionsMonsterType
-// | ActionsSheetType
-// | ActionsAppType
-// | ActionsAuthType
-// | ActionsPopupType;
-
-// export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionsType>;
 
 declare global {
     interface Window {
@@ -42,10 +29,7 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(
-    rootReducer,
-    composeEnhancers(applyMiddleware(thunk)),
-);
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 // @ts-ignore
 window.store = store;

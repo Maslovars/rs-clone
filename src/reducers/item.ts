@@ -1,9 +1,5 @@
 import { ITEM_LEVEL_MAP, ItemType, ProduceLevelType } from '../constants/items';
-import {
-    RUNE_BUY,
-    RUNE_TYPE_ITEM_PRODUCE_LEVEL,
-    RunesListType,
-} from '../constants/runes';
+import { RUNE_BUY, RUNE_TYPE_ITEM_PRODUCE_LEVEL, RunesListType } from '../constants/runes';
 import { ITEM_MERGE, ITEM_PRODUCE } from '../constants';
 
 export type InitialItemType = {
@@ -16,8 +12,8 @@ export const itemProduce = (items: ItemType[]) => {
     return {
         type: ITEM_PRODUCE,
         payload: {
-            items,
-        },
+            items
+        }
     } as const;
 };
 
@@ -26,8 +22,8 @@ export const itemMerge = (fromIndex: number, toIndex: number) => {
         type: ITEM_MERGE,
         payload: {
             fromIndex,
-            toIndex,
-        },
+            toIndex
+        }
     } as const;
 };
 
@@ -35,15 +31,12 @@ export const runeBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
         payload: {
-            rune,
-        },
+            rune
+        }
     } as const;
 };
 
-export type ActionsItemType =
-    | ReturnType<typeof itemProduce>
-    | ReturnType<typeof itemMerge>
-    | ReturnType<typeof runeBuy>;
+export type ActionsItemType = ReturnType<typeof itemProduce> | ReturnType<typeof itemMerge> | ReturnType<typeof runeBuy>;
 
 const initialItems = [...new Array(15)].map((k, i) => {
     if (i < 2) {
@@ -64,21 +57,17 @@ const calculateDPS = (items: (ItemType | null)[]) => {
 const initialStateItem: InitialItemType = {
     items: initialItems,
     dps: calculateDPS(initialItems),
-    produceLevel: 1,
+    produceLevel: 1
 };
 
-export const itemReducer = (
-    // eslint-disable-next-line default-param-last
-    state: InitialItemType = initialStateItem,
-    action: ActionsItemType,
-): InitialItemType => {
+export const itemReducer = (state: InitialItemType = initialStateItem, action: ActionsItemType): InitialItemType => {
     switch (action.type) {
         case ITEM_PRODUCE: {
             const firstEmptyIndex = state.items.indexOf(null);
 
             if (firstEmptyIndex < 0) {
                 return {
-                    ...state,
+                    ...state
                 };
             }
 
@@ -88,48 +77,38 @@ export const itemReducer = (
             return {
                 ...state,
                 items: clone,
-                dps: calculateDPS(clone),
+                dps: calculateDPS(clone)
             };
         }
+
         case ITEM_MERGE: {
             const future = [...state.items];
             const item = future[action.payload.fromIndex];
-            const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(
-                Number,
-            ) as ProduceLevelType[];
+            const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(Number) as ProduceLevelType[];
 
             if (item !== null) {
-                const indexOfPreviousItem = itemIndexes.indexOf(
-                    item.damage,
-                ) as ProduceLevelType;
-                future[action.payload.toIndex] =
-                    ITEM_LEVEL_MAP[itemIndexes[indexOfPreviousItem + 1]];
+                const indexOfPreviousItem = itemIndexes.indexOf(item.damage) as ProduceLevelType;
+                future[action.payload.toIndex] = ITEM_LEVEL_MAP[itemIndexes[indexOfPreviousItem + 1]];
                 future[action.payload.fromIndex] = null;
             }
             return {
                 ...state,
                 items: future,
-                dps: calculateDPS(future),
+                dps: calculateDPS(future)
             };
         }
 
-        /*
-        |  Runes
-        */
-
         case RUNE_BUY:
             if (action.payload.rune.type === RUNE_TYPE_ITEM_PRODUCE_LEVEL) {
-                const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(
-                    Number,
-                ) as ProduceLevelType[];
+                const itemIndexes = Object.keys(ITEM_LEVEL_MAP).map(Number) as ProduceLevelType[];
 
                 return {
                     ...state,
-                    produceLevel: itemIndexes[action.payload.rune.owned + 1],
+                    produceLevel: itemIndexes[action.payload.rune.owned + 1]
                 };
             }
             return {
-                ...state,
+                ...state
             };
 
         default:

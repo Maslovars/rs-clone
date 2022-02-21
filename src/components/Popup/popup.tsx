@@ -3,7 +3,6 @@ import './popup.scss';
 
 type PopupPropsType = {
     type: string;
-    // eslint-disable-next-line no-undef
     content: JSX.Element | null;
     onClose: () => void;
 };
@@ -13,7 +12,7 @@ function Popup(props: PopupPropsType) {
     return (
         <div className="com-Popup">
             <div className={`popup-header ${type || ''}`} />
-            <div className="popup-close" onClick={onClose} />
+            <div className="popup-close" onClick={onClose} role="button" tabIndex={0} aria-label="button" />
             <div className="popup-table">
                 <div className="popup-table-inner">{content}</div>
             </div>

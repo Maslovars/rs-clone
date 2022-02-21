@@ -8,38 +8,33 @@ export const runeBuy = (rune: RunesListType) => {
     return {
         type: RUNE_BUY,
         payload: {
-            rune,
-        },
+            rune
+        }
     };
 };
 
 export type ActionsRuneType = ReturnType<typeof runeBuy>;
 
 const initialStateRune: InitialRuneType = {
-    runes: RUNES_LIST,
+    runes: RUNES_LIST
 };
 
-export const runeReducer = (
-    // eslint-disable-next-line default-param-last
-    state: InitialRuneType = initialStateRune,
-    action: ActionsRuneType,
-): InitialRuneType => {
+export const runeReducer = (state: InitialRuneType = initialStateRune, action: ActionsRuneType): InitialRuneType => {
     switch (action.type) {
-        case RUNE_BUY:
+        case RUNE_BUY: {
             const { rune } = action.payload;
-
             const index = state.runes.findIndex((r) => r.type === rune.type);
             const clone = [...state.runes];
             clone[index] = {
                 ...rune,
                 owned: rune.owned + 1,
-                price: rune.price * rune.priceMultiplier,
+                price: rune.price * rune.priceMultiplier
             };
 
             return {
-                runes: clone,
+                runes: clone
             };
-
+        }
         default:
             return state;
     }

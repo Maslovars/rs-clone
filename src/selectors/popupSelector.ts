@@ -8,7 +8,7 @@ interface PopupSelector {
 
 const PopupsSelector = (state: AppStateType) => {
     return {
-        popup: state.popup,
+        popup: state.popup
     };
 };
 

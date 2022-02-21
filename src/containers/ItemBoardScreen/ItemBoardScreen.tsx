@@ -14,8 +14,6 @@ function ItemBoardScreen(props: ItemBoardScreenPropsType) {
     const { items } = useItemsSelectors();
     const { start, onMergeItem } = props;
     const [started, setStarted] = useState<boolean>(false);
-    // eslint-disable-next-line no-undef
-    const [intervalId, setIntervalId] = useState<NodeJS.Timer | null>(null);
     const [clickedIndex, setClickedIndex] = useState<number | null>(null);
     const dispatch = useDispatch();
 
@@ -28,18 +26,10 @@ function ItemBoardScreen(props: ItemBoardScreenPropsType) {
         }
 
         setStarted(true);
-        const id = setInterval(() => {
+        setInterval(() => {
             dispatch(itemProduce([ITEM_LEVEL_MAP[1]]));
         }, 4500);
-        setIntervalId(id);
     }, [started, start]);
-
-    // eslint-disable-next-line consistent-return
-    useEffect(() => {
-        if (intervalId) {
-            return () => clearInterval(intervalId);
-        }
-    }, []);
 
     const onItemClick = (item: ItemType | null, index: number) => {
         if (!item) {
@@ -67,14 +57,7 @@ function ItemBoardScreen(props: ItemBoardScreenPropsType) {
 
         setClickedIndex(index);
     };
-    return (
-        <ItemBoard
-            start={start}
-            items={items}
-            clickedIndex={clickedIndex}
-            onClick={onItemClick}
-        />
-    );
+    return <ItemBoard start={start} items={items} clickedIndex={clickedIndex} onClick={onItemClick} />;
 }
 
 export default ItemBoardScreen;

@@ -38,56 +38,56 @@ export const ITEM_LEVEL_MAP: ItemLevelMapType = {
     1: {
         damage: 1,
         icon: swordWood,
-        coins: 1,
+        coins: 1
     },
     2: {
         damage: 2,
         icon: sword,
-        coins: 2,
+        coins: 2
     },
     5: {
         damage: 5,
         icon: upgBow,
-        coins: 5,
+        coins: 5
     },
     12: {
         damage: 12,
         icon: upgSpear,
-        coins: 10,
+        coins: 10
     },
     26: {
         damage: 26,
         icon: upgAxeDouble,
-        coins: 20,
+        coins: 20
     },
     60: {
         damage: 60,
         icon: upgAxe,
-        coins: 30,
+        coins: 30
     },
     150: {
         damage: 150,
         icon: helmet,
-        coins: 40,
+        coins: 40
     },
     350: {
         damage: 350,
         icon: armor,
-        coins: 50,
+        coins: 50
     },
     750: {
         damage: 750,
         icon: wand,
-        coins: 60,
+        coins: 60
     },
     2000: {
         damage: 2000,
         icon: upgShieldSmall,
-        coins: 70,
+        coins: 70
     },
     5000: {
         damage: 5000,
         icon: upgHelmet,
-        coins: 80,
-    },
+        coins: 80
+    }
 };
