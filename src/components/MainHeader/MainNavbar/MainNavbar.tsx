@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './MainNavbar.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 
 function MainNavbar() {
     const navigate = useNavigate();
@@ -18,10 +18,10 @@ function MainNavbar() {
         <nav className="main-navbar">
             <ul className="main-navbar__ul">
                 <li className="main-navbar__li">
-                    <NavLink to="/game">Game</NavLink>{' '}
+                    <NavLink to="/game">Game </NavLink>
                 </li>
                 <li className="main-navbar__li">
-                    <NavLink to="/score">Score</NavLink>{' '}
+                    <NavLink to="/score">Score </NavLink>
                 </li>
                 <li className="main-navbar__li">
                     <a href="/" onClick={logoutHandler}>
