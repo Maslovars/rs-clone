@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
-// import 'materialize-css/dist/css/materialize.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import MainHeader from '../components/MainHeader/MainHeader';
 import MainFooter from '../components/MainFooter/MainFooter';
 import useRoutes from '../components/MainPage/Routes';
@@ -19,6 +20,17 @@ function App() {
                     <MainHeader />
                     <div className="main-page">{routes}</div>
                     <MainFooter />
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={1500}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
                 </div>
             </div>
         </AuthContext.Provider>
