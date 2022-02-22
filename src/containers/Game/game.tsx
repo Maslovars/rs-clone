@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IonPhaser } from '@ion-phaser/react';
 import { AppStateType } from '../../app/redux-store';
-import { POPUP_SCREEN_ABOUT, POPUP_SCREEN_FAQ, POPUP_SCREEN_SETTINGS, POPUP_SCREEN_SHOP, POPUP_SCREEN_UPGRADE } from '../../constants';
+import {
+    POPUP_GAME_OVER,
+    POPUP_SCREEN_ABOUT,
+    POPUP_SCREEN_FAQ,
+    POPUP_SCREEN_SETTINGS,
+    POPUP_SCREEN_SHOP,
+    POPUP_SCREEN_UPGRADE,
+    STARTING_LEVEL
+} from '../../constants';
 import RuneScreen from '../RuneScreen/runeScreen';
-import { closePopup, InitialPopupType } from '../../reducers/popup';
+import { closePopup, InitialPopupType, openPopup } from '../../reducers/popup';
 import ItemBoardScreen from '../ItemBoardScreen/ItemBoardScreen';
 import { ITEM_LEVEL_MAP } from '../../constants/items';
 import HeaderGame from '../HeaderGame/headerGame';
@@ -13,11 +21,13 @@ import FooterGame from '../FooterGame/footerGame';
 import Tutorial from '../../components/Tutorial/tutorial';
 import Popup from '../../components/Popup/popup';
 import { GameConfig } from './stateGame';
-import { coinSpent, runeBuy } from '../../reducers/coin';
-import { itemMerge, itemProduce } from '../../reducers/item';
+import { coinReset, coinSpent, runeBuy } from '../../reducers/coin';
+import { itemMerge, itemProduce, itemReset } from '../../reducers/item';
 import { monsterDie } from '../../reducers/monster';
 import music from '../../assets/music/the_path_of_the_goblin_king.mp3';
+import useItemsSelectors from '../../selectors/itemSelector';
 import './game.scss';
+import '../../components/Tutorial/tutorial.scss';
 
 function Game() {
     const popup = useSelector<AppStateType, InitialPopupType>((state) => state.popup);
@@ -26,15 +36,18 @@ function Game() {
     const [onboardingStep, setOnboardingStep] = useState<number>(GameConfig.onboardingStep);
     const [level, setLevel] = useState<number>(GameConfig.level);
 
-    // const { items } = useItemsSelectors();
+    const { items } = useItemsSelectors();
 
-    /* useEffect(() => {
+    useEffect(() => {
         if (items[items.length - 1] !== null) {
             dispatch(itemReset());
+            dispatch(coinReset());
+            setLevel(STARTING_LEVEL);
             dispatch(openPopup(POPUP_GAME_OVER));
+            dispatch(monsterDie(STARTING_LEVEL));
             setOnboardingStep(0);
         }
-    }, [items, level]); */
+    }, [items]);
 
     function getSettings() {
         return (
@@ -97,6 +110,21 @@ function Game() {
             case POPUP_SCREEN_SETTINGS:
                 return getSettings();
 
+            case POPUP_GAME_OVER: {
+                const startNewGame = () => {
+                    dispatch(closePopup());
+                };
+                return (
+                    <div className="com-Tutorial">
+                        <div className="tutorial-content" style={{ alignItems: 'center', fontSize: 'xxx-large' }}>
+                            GAME OVER!
+                        </div>
+                        <button type="button" className="next" onClick={startNewGame}>
+                            NEW GAME
+                        </button>
+                    </div>
+                );
+            }
             default:
                 return null;
         }

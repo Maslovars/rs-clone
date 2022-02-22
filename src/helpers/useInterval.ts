@@ -13,7 +13,7 @@ function useInterval(callback: () => void, delay: number, started: boolean, star
         setStarted(true);
         // @ts-ignore
         savedCallback.current = callback;
-    });
+    }, [callback, start, started, setStarted]);
 
     useEffect(() => {
         function tick() {

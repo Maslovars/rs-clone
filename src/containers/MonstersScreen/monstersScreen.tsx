@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GAME_SPEED_MULTIPLIER, objMonsterType } from '../../constants';
 import Monster from '../../components/Monster/monster';
@@ -21,16 +21,13 @@ function MonstersScreen(props: MonstersScreenPropsType) {
     const { monster } = useMonsterSelectors();
     const { critRate } = useSheetsSelectors();
     const { critDamage } = useSheetsSelectors();
-
     const { start, onMonsterDie, level } = props;
-
     const [started, setStarted] = useState<boolean>(false);
-    const receivedDamage = useRef(0);
+    const receivedDamage = useRef(dps);
     const [isCriticalHit, setIsCriticalHit] = useState<boolean>(false);
-    const [delay] = useState<number>(1000);
 
     useInterval(
-        () => {
+        useCallback(() => {
             const critRoll = getRandomIntInclusive(0, 100);
             if (critRoll <= critRate) {
                 setIsCriticalHit(true);
@@ -46,8 +43,8 @@ function MonstersScreen(props: MonstersScreenPropsType) {
                 return;
             }
             dispatch(monsterUpdate(monster));
-        },
-        delay,
+        }, [dps, receivedDamage, monster, level]),
+        1000,
         started,
         start,
         setStarted

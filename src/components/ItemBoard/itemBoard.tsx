@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Item from './Item/item';
 import { coinReceived } from '../../reducers/coin';
 import { COIN_RECEIVE_SHOW_DURATION, ItemType } from '../../constants/items';
+import useInterval from '../../helpers/useInterval';
 import './itemBoard.scss';
 
 type ItemBoardPropsType = {
@@ -18,21 +19,12 @@ function ItemBoard(props: ItemBoardPropsType) {
     const [started, setStarted] = useState<boolean>(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (started) {
-            return;
-        }
-        if (!start) {
-            return;
-        }
-        setStarted(true);
-
-        const id = setInterval(() => {
+    useInterval(
+        useCallback(() => {
             if (!start) {
                 return;
             }
             setHighlight(true);
-
             const coins = items.reduce((acc, item) => {
                 if (item) {
                     acc += item.coins;
@@ -43,12 +35,12 @@ function ItemBoard(props: ItemBoardPropsType) {
             setTimeout(() => {
                 setHighlight(false);
             }, COIN_RECEIVE_SHOW_DURATION);
-        }, 2500);
-
-        if (items[items.length - 1] !== null) {
-            clearInterval(id);
-        }
-    }, [started, start, items]);
+        }, [start, items]),
+        2500,
+        started,
+        start,
+        setStarted
+    );
 
     return (
         <div className="com-ItemBoard">

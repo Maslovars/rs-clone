@@ -1,9 +1,11 @@
 // Coin ----------------------------
 export const COIN_RECEIVED = 'COIN/COIN_RECEIVED';
 export const COIN_SPENT = 'COIN/COIN_SPENT';
+export const COIN_RESET = 'COIN/COIN_RESET';
 
 // Coin ----------------------------
 export const ITEM_PRODUCE = 'ITEM/ITEM_PRODUCE';
+export const ITEM_RESET = 'ITEM/ITEM_RESET';
 export const ITEM_MERGE = 'ITEM/ITEM_MERGE';
 
 // Popup ----------------------------
@@ -51,7 +53,7 @@ export type objMonsterType = {
 };
 
 const generateMonstersMap = () => {
-    const obj = {} as { [key: number]: objMonsterType };
+    const obj = [] as objMonsterType[];
 
     [...new Array(100)].forEach((k, i) => {
         const level = (i + 1) as number;

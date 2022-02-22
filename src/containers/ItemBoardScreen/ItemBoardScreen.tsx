@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ITEM_LEVEL_MAP, ItemType } from '../../constants/items';
 import ItemBoard from '../../components/ItemBoard/itemBoard';
 import { itemProduce } from '../../reducers/item';
 import useItemsSelectors from '../../selectors/itemSelector';
+import useInterval from '../../helpers/useInterval';
 
 type ItemBoardScreenPropsType = {
     start: boolean;
@@ -17,18 +18,15 @@ function ItemBoardScreen(props: ItemBoardScreenPropsType) {
     const [clickedIndex, setClickedIndex] = useState<number | null>(null);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (started) {
-            return;
-        }
-        if (!start) {
-            return;
-        }
-        setStarted(true);
-        setInterval(() => {
+    useInterval(
+        () => {
             dispatch(itemProduce([ITEM_LEVEL_MAP[1]]));
-        }, 4500);
-    }, [started, start]);
+        },
+        4500,
+        started,
+        start,
+        setStarted
+    );
 
     const onItemClick = (item: ItemType | null, index: number) => {
         if (!item) {
