@@ -1,6 +1,6 @@
 import { ITEM_LEVEL_MAP, ItemType, ProduceLevelType } from '../constants/items';
 import { RUNE_BUY, RUNE_TYPE_ITEM_PRODUCE_LEVEL, RunesListType } from '../constants/runes';
-import { ITEM_MERGE, ITEM_PRODUCE } from '../constants';
+import { ITEM_MERGE, ITEM_PRODUCE, ITEM_RESET } from '../constants';
 
 export type InitialItemType = {
     items: (ItemType | null)[];
@@ -27,11 +27,11 @@ export const itemMerge = (fromIndex: number, toIndex: number) => {
     } as const;
 };
 
-/* export const itemReset = () => {
+export const itemReset = () => {
     return {
-        type: 'ITEM_RESET'
+        type: ITEM_RESET
     } as const;
-}; */
+};
 
 export const runeBuy = (rune: RunesListType) => {
     return {
@@ -42,7 +42,7 @@ export const runeBuy = (rune: RunesListType) => {
     } as const;
 };
 
-export type ActionsItemType = ReturnType<typeof itemProduce> | ReturnType<typeof itemMerge> | ReturnType<typeof runeBuy>;
+export type ActionsItemType = ReturnType<typeof itemProduce> | ReturnType<typeof itemMerge> | ReturnType<typeof runeBuy> | ReturnType<typeof itemReset>;
 
 const initialItems = [...new Array(15)].map((k, i) => {
     if (i < 2) {
@@ -87,12 +87,14 @@ export const itemReducer = (state: InitialItemType = initialStateItem, action: A
             };
         }
 
-        /* case 'ITEM_RESET': {
+        case ITEM_RESET: {
             return {
                 ...state,
-                items: []
+                items: initialItems,
+                dps: calculateDPS(initialItems),
+                produceLevel: 1
             };
-        } */
+        }
 
         case ITEM_MERGE: {
             const future = [...state.items];

@@ -23,7 +23,7 @@ export const monsterDie = (level: number) => {
 export type ActionsMonsterType = ReturnType<typeof monsterUpdate> | ReturnType<typeof monsterDie>;
 
 const initialStateMonster: InitialMonsterType = {
-    monster: MONSTERS_MAP[STARTING_LEVEL]
+    monster: { ...MONSTERS_MAP[STARTING_LEVEL] }
 };
 
 export const monsterReducer = (state: InitialMonsterType = initialStateMonster, action: ActionsMonsterType): InitialMonsterType => {
@@ -37,7 +37,7 @@ export const monsterReducer = (state: InitialMonsterType = initialStateMonster, 
         case MONSTER_DIE:
             return {
                 ...state,
-                monster: MONSTERS_MAP[action.payload.level]
+                monster: { ...MONSTERS_MAP[action.payload.level] }
             };
 
         default:
