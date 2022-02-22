@@ -10,6 +10,7 @@ function ConnectionForm() {
     const { load, error, request, clearError } = useHttp();
     const message = useMessage();
     const auth = useContext(AuthContext);
+    const [show, setShow] = useState(false);
     const [form, setForm] = useState({
         userName: '',
         password: ''
@@ -38,6 +39,10 @@ function ConnectionForm() {
         } catch (err) {}
     };
 
+    const showPassword = () => {
+        setShow(!show);
+    };
+
     return (
         <div className="connection-form">
             <div className="connection-form__inputs">
@@ -61,11 +66,16 @@ function ConnectionForm() {
                     <input
                         placeholder="Enter your password"
                         id="password"
-                        type="password"
+                        type={show ? 'text' : 'password'}
                         className="browser-default connection-form__input"
                         name="password"
                         onChange={changeHandler}
                     />
+                    {show ? (
+                        <span aria-hidden onClick={showPassword} className="connection-form__spanOn" />
+                    ) : (
+                        <span aria-hidden onClick={showPassword} className="connection-form__spanOff" />
+                    )}
                 </div>
             </div>
             <div className="connection-form__btns">

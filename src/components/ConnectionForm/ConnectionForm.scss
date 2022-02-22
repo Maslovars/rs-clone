@@ -15,6 +15,7 @@
             flex-direction: column;
             justify-content: space-around;  
             padding: 10px 0;  
+            position: relative;
             .connection-form__label {
                 padding: 10px 0;
                 color: #6B6A6A;
@@ -23,6 +24,25 @@
                 border: none;
                 border-bottom: 1px solid black;              
             }   
+            & span {
+                position: absolute;
+                top: 45px;
+                right: 10px;
+                display: inline-block;
+                width: 20px;
+                height: 20px; 
+                transition: 0.2s ease-in;
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.05);
+                }               
+            }
+            .connection-form__spanOff {
+                background: url("../../assets/connectionForm/closed-eye.svg") 0 0 no-repeat;
+            }
+            .connection-form__spanOn {
+                background: url("../../assets/connectionForm/eye.svg") 0 0 no-repeat;
+            }
 
         }    
     }
