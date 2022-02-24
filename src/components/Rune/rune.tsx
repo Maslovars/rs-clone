@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { RunesListType } from '../../constants/runes';
 import './rune.scss';
 
@@ -29,23 +30,25 @@ function Rune(props: RunePropsType) {
                 <h1>{rune.name}</h1>
                 <h3>{rune.description}</h3>
                 <h3>
-                    Per level:
+                    <FormattedMessage id="rune_level" />
                     {per}
                 </h3>
                 <h3>
-                    Current:
+                    <FormattedMessage id="rune_current" />
                     {current}
                 </h3>
                 <h3>
-                    Price:
+                    <FormattedMessage id="rune_price" />
                     {rune.price}
                 </h3>
                 <p>
-                    Owned:
+                    <FormattedMessage id="rune_owned" />
                     {rune.owned}
                 </p>
                 <div className="buy-button" onClick={onClick} role="button" aria-label="button" tabIndex={0}>
-                    <h2>Buy</h2>
+                    <h2>
+                        <FormattedMessage id="rune_buy" />
+                    </h2>
                 </div>
             </div>
         </div>

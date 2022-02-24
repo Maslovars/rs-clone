@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import './tutorial.scss';
 
 type TutorialPropsType = {
@@ -11,11 +12,17 @@ const tutorialContent = (step: number) => {
         case 0:
             return (
                 <>
-                    <p>Welcome!</p>
+                    <p>
+                        <FormattedMessage id="tutorial_welcome" />
+                    </p>
                     <br />
-                    <p>Good to see you here!</p>
+                    <p>
+                        <FormattedMessage id="tutorial_text_1" />
+                    </p>
                     <br />
-                    <p>I will teach you the basics of the game now.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_text_2" />
+                    </p>
                 </>
             );
 
@@ -24,9 +31,13 @@ const tutorialContent = (step: number) => {
                 <>
                     <h1>←</h1>
 
-                    <p>Here, you see your Coins, Stage and Damage.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_1_text_1" />
+                    </p>
                     <br />
-                    <p>You need to kill the Monster to go to the next Stage.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_1_text_2" />
+                    </p>
                 </>
             );
 
@@ -35,11 +46,17 @@ const tutorialContent = (step: number) => {
                 <>
                     <h1>←</h1>
 
-                    <p>This is the Weapon Board.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_2_text_1" />
+                    </p>
                     <br />
-                    <p>Every weapon generates coin and deals damage to monsters automatically.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_2_text_2" />
+                    </p>
                     <br />
-                    <p>I gave you two Wooden Swords.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_2_text_3" />
+                    </p>
                 </>
             );
 
@@ -47,16 +64,22 @@ const tutorialContent = (step: number) => {
             return (
                 <>
                     <h1>←</h1>
-                    <p>The numbers on swords have meanings.</p>
-                    <br />
                     <p>
-                        <span className="red-number">Red number:</span>
-                        how much damage it provides
+                        <FormattedMessage id="tutorial_step_3_text_1" />
                     </p>
                     <br />
                     <p>
-                        <span className="yellow-number">Yellow number: </span>
-                        how much coin it generates
+                        <span className="red-number">
+                            <FormattedMessage id="tutorial_step_3_text_2_red" />
+                        </span>
+                        <FormattedMessage id="tutorial_step_3_text_2" />
+                    </p>
+                    <br />
+                    <p>
+                        <span className="yellow-number">
+                            <FormattedMessage id="tutorial_step_3_text_3_yellow" />
+                        </span>
+                        <FormattedMessage id="tutorial_step_3_text_3" />
                     </p>
                 </>
             );
@@ -65,11 +88,17 @@ const tutorialContent = (step: number) => {
             return (
                 <>
                     <h1>←</h1>
-                    <p>You can click on Weapons and combine them to get more powerful versions.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_4_text_1" />
+                    </p>
                     <br />
-                    <p>Try to click on both Weapons to make a more powerful version.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_4_text_2" />
+                    </p>
                     <br />
-                    <p>I am waiting...</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_4_text_3" />
+                    </p>
                 </>
             );
 
@@ -77,9 +106,13 @@ const tutorialContent = (step: number) => {
             return (
                 <>
                     <h1>←</h1>
-                    <p>Great, you made a Steel Sword! It is more powerful so Weapon`s Coin income and Damage is increased to 2.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_5_text_1" />
+                    </p>
                     <br />
-                    <p>You can combine only same tier of Weapons.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_5_text_2" />
+                    </p>
                 </>
             );
 
@@ -87,9 +120,13 @@ const tutorialContent = (step: number) => {
             return (
                 <>
                     <h1>←</h1>
-                    <p>Every few seconds you will get new weapons automatically.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_6_text_1" />
+                    </p>
                     <br />
-                    <p>Combine them and get stronger. Spend your coins on Runes to get even stronger!</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_6_text_2" />
+                    </p>
                 </>
             );
 
@@ -97,16 +134,26 @@ const tutorialContent = (step: number) => {
             return (
                 <>
                     <h1>←</h1>
-                    <p>Now you are ready to challenge the monsters!</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_7_text_1" />
+                    </p>
                     <br />
-                    <p>Click the Start button to attack first monster.</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_7_text_2" />
+                    </p>
                     <br />
-                    <p>Have fun!</p>
+                    <p>
+                        <FormattedMessage id="tutorial_step_7_text_3" />
+                    </p>
                 </>
             );
 
         default:
-            return <p>Not implemented</p>;
+            return (
+                <p>
+                    <FormattedMessage id="tutorial_not_implemented" />
+                </p>
+            );
     }
 };
 
@@ -117,7 +164,7 @@ function Tutorial(props: TutorialPropsType) {
         <div className={`com-Tutorial  step-${step}`}>
             <div className="tutorial-content">{tutorialContent(step)}</div>
             <button type="button" className="next" onClick={onNext}>
-                Next
+                <FormattedMessage id="tutorial_next" />
             </button>
         </div>
     );

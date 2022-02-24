@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import './counter.scss';
 
 type CounterPropsType = {
@@ -22,7 +23,9 @@ function Counter(props: CounterPropsType) {
                 <h2>{coins}</h2>
             </div>
             <div className="moves-box">
-                <h1>Stage</h1>
+                <h1>
+                    <FormattedMessage id="counter_stage" />
+                </h1>
                 <h2>{level}</h2>
             </div>
             <div className="dps-box">

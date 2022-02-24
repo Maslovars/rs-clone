@@ -1,6 +1,7 @@
 import React from 'react';
 import './footer.scss';
 
+import { FormattedMessage } from 'react-intl';
 import upgrade from '../../assets/ui/buttons/upgrade.png';
 import shop from '../../assets/ui/buttons/shop.png';
 import settings from '../../assets/ui/buttons/settings.png';
@@ -28,19 +29,27 @@ function Footer(props: FooterPropsType) {
             <div className="footer-inner">
                 <div className="button" onClick={onUpgradeClick} role="button" tabIndex={0}>
                     <img src={upgrade} alt="upgrade" />
-                    <span>Runes</span>
+                    <span>
+                        <FormattedMessage id="footer_runes" />
+                    </span>
                 </div>
                 <div className="button" onClick={onAboutClick} role="button" tabIndex={0}>
                     <img src={about} alt="about" />
-                    <span>Stats</span>
+                    <span>
+                        <FormattedMessage id="footer_stats" />
+                    </span>
                 </div>
                 <div className="button" onClick={onShopClick} role="button" tabIndex={0}>
                     <img src={shop} alt="shop" />
-                    <span>Shop</span>
+                    <span>
+                        <FormattedMessage id="footer_shop" />
+                    </span>
                 </div>
                 <div className="button" onClick={onSettingsClick} role="button" tabIndex={0}>
                     <img src={settings} alt="settings" />
-                    <span>Settings</span>
+                    <span>
+                        <FormattedMessage id="footer_settings" />
+                    </span>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './ConnectionForm.scss';
+import { FormattedMessage, useIntl } from 'react-intl';
 import useHttp from '../hooks/http.hook';
 import useMessage from '../hooks/message.hook';
 import loginBtn from '../../assets/connectionForm/login-btn.png';
@@ -43,15 +44,17 @@ function ConnectionForm() {
         setShow(!show);
     };
 
+    const intL = useIntl();
+
     return (
         <div className="connection-form">
             <div className="connection-form__inputs">
                 <div className="connection-form__inputs-wrapper">
                     <label className="connection-form__label" htmlFor="userName">
-                        Name
+                        <FormattedMessage id="connection_form_name" />
                     </label>
                     <input
-                        placeholder="Enter your name"
+                        placeholder={intL.formatMessage({ id: 'connection_form_enter_name' })}
                         id="userName"
                         type="text"
                         className="browser-default connection-form__input"
@@ -61,10 +64,10 @@ function ConnectionForm() {
                 </div>
                 <div className="connection-form__inputs-wrapper">
                     <label className="connection-form__label" htmlFor="password">
-                        Password
+                        <FormattedMessage id="connection_form_password" />
                     </label>
                     <input
-                        placeholder="Enter your password"
+                        placeholder={intL.formatMessage({ id: 'connection_form_enter_password' })}
                         id="password"
                         type={show ? 'text' : 'password'}
                         className="browser-default connection-form__input"
