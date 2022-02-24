@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import Monster from '../Monster/monster';
 import Counter from '../Counter/counter';
 import Footer from '../Footer/footer';
@@ -64,7 +65,9 @@ function GameComponent() {
     if (!load) {
         return (
             <div className="app-container">
-                <h1 className="loading">Loading game...</h1>
+                <h1 className="loading">
+                    <FormattedMessage id="game_loading" />
+                </h1>
                 {preloadInitial()}
             </div>
         );

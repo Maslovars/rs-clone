@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IonPhaser } from '@ion-phaser/react';
+import { FormattedMessage } from 'react-intl';
 import { AppStateType } from '../../app/redux-store';
 import {
     POPUP_GAME_OVER,
@@ -52,7 +53,9 @@ function Game() {
     function getSettings() {
         return (
             <>
-                <h1>Toggle BGM</h1>
+                <h1>
+                    <FormattedMessage id="game_music" />
+                </h1>
                 <button
                     type="button"
                     onClick={() => {
@@ -60,7 +63,7 @@ function Game() {
                     }}
                     className="bgm"
                 >
-                    {bgm ? 'Pause' : 'Play'}
+                    {bgm ? <FormattedMessage id="game_music_pause" /> : <FormattedMessage id="game_music_play" />}
                 </button>
             </>
         );
@@ -81,29 +84,47 @@ function Game() {
             case POPUP_SCREEN_FAQ:
                 return (
                     <>
-                        <h1>How to Play</h1>
+                        <h1>
+                            <FormattedMessage id="poput_faq_text_1" />
+                        </h1>
                         <br />
                         <ul>
-                            <li>1. Click and match weapons to get one level higher.</li>
+                            <li>
+                                <FormattedMessage id="poput_faq_text_2" />
+                            </li>
                             <br />
-                            <li>2. Every weapon gives you coins and deals damage to monsters.</li>
+                            <li>
+                                <FormattedMessage id="poput_faq_text_3" />
+                            </li>
                             <br />
-                            <li>3. Upgrade your runes to gain even more coins and damage.</li>
+                            <li>
+                                <FormattedMessage id="poput_faq_text_4" />
+                            </li>
                             <br />
-                            <li>4. That`&apos;`s all. How many levels can you beat?</li>
+                            <li>
+                                <FormattedMessage id="poput_faq_text_5" />
+                            </li>
                         </ul>
                     </>
                 );
 
             case POPUP_SCREEN_ABOUT:
-                return <h1>Character Sheet (under construction)</h1>;
+                return (
+                    <h1>
+                        <FormattedMessage id="popup_about" />
+                    </h1>
+                );
 
             case POPUP_SCREEN_SHOP:
                 return (
                     <>
-                        <h1>Shop (under construction)</h1>
+                        <h1>
+                            <FormattedMessage id="popup_shop_text_1" />
+                        </h1>
                         <br />
-                        <p>Sorry, there is nothing for sale right now.</p>
+                        <p>
+                            <FormattedMessage id="popup_shop_text_2" />
+                        </p>
                     </>
                 );
 
@@ -117,10 +138,10 @@ function Game() {
                 return (
                     <div className="com-Tutorial">
                         <div className="tutorial-content" style={{ alignItems: 'center', fontSize: 'xxx-large' }}>
-                            GAME OVER!
+                            <FormattedMessage id="popup_gameover" />
                         </div>
                         <button type="button" className="next" onClick={startNewGame}>
-                            NEW GAME
+                            <FormattedMessage id="popup_newgame" />
                         </button>
                     </div>
                 );

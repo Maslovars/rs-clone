@@ -2,16 +2,13 @@
 
 html {
   overflow-y: auto;
-  ::-webkit-scrollbar {
-    width: 0;
-  }
 }
 
 body {
   margin: 0;
   font-family: 'SoupOfJustice', sans-serif;
-  font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smooth: antialiased;
+  -moz-osx-font-smooth: grayscale;
 }
 
 * {
