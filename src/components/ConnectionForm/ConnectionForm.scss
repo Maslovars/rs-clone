@@ -1,0 +1,65 @@
+.connection-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 365px;
+    height: 472px;
+    background-image: url("../../assets/connectionForm/form-background.png");
+    .connection-form__inputs {
+        display: flex;
+        flex-direction: column;
+        padding-top: 115px;    
+        .connection-form__inputs-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;  
+            padding: 10px 0;  
+            position: relative;
+            .connection-form__label {
+                padding: 10px 0;
+                color: #6B6A6A;
+            }   
+            .connection-form__input {
+                border: none;
+                border-bottom: 1px solid black;              
+            }   
+            & span {
+                position: absolute;
+                top: 45px;
+                right: 10px;
+                display: inline-block;
+                width: 20px;
+                height: 20px; 
+                transition: 0.2s ease-in;
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.05);
+                }               
+            }
+            .connection-form__spanOff {
+                background: url("../../assets/connectionForm/closed-eye.svg") 0 0 no-repeat;
+            }
+            .connection-form__spanOn {
+                background: url("../../assets/connectionForm/eye.svg") 0 0 no-repeat;
+            }
+
+        }    
+    }
+    
+    .connection-form__btns {
+        padding-right: 20px;
+        .connection-form__btn {   
+            display: inline-block;
+            margin: 0;        
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            transition: 0.3s ease-in;
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        } 
+    }   
+}

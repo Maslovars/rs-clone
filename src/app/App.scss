@@ -1,0 +1,45 @@
+//@import 'node_modules/bulma/sass/utilities/_all.sass';
+//@import 'node_modules/bulma/sass/base/_all.sass';
+//@import 'node_modules/react-toastify/scss/main.scss';
+
+@import '../styles';
+
+html,
+body {
+	height: 100%;
+}
+
+#root {
+    height: 100%;
+  }
+
+.App {
+    height: 100%;
+}
+
+.app-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.main-header {
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 0 0 auto;
+  }
+
+.main-page {
+    /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../assets/backgrounds/background.png);
+    background-size: contain;
+  }
+
+.main-footer {
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 0 0 auto;
+  }

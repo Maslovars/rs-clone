@@ -1,0 +1,16 @@
+@import './fonts.scss';
+
+html {
+  overflow-y: auto;
+}
+
+body {
+  margin: 0;
+  font-family: 'SoupOfJustice', sans-serif;
+  -webkit-font-smooth: antialiased;
+  -moz-osx-font-smooth: grayscale;
+}
+
+* {
+  outline: none !important;
+}
